@@ -1,11 +1,11 @@
 package model;
 
 public class Tablero {
- private Kasila[][] tablero;
+ private Kasila[][] matrizea;
  private static Tablero nTablero = new Tablero(); /** = null */
 
     private Tablero() {
-        this.tablero = tablero;
+        this.matrizea = new Kasila[9][9];
     }
     public static Tablero getNireTablero(){
        /** if(Tablero.nTablero==null) {
