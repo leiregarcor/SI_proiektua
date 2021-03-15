@@ -6,6 +6,8 @@ public class Tablero {
 
     private Tablero() {
         this.matrizea = new Kasila[9][9];
+        this.sortuMatrizea();
+        this.fitxeroaKargatu();
     }
     public static Tablero getNireTablero(){
        /** if(Tablero.nTablero==null) {
@@ -22,5 +24,9 @@ public class Tablero {
                 matrizea[err][zut]= new Kasila(err, zut);
             }
         }
+    }
+
+    private void fitxeroaKargatu(){
+
     }
 }
