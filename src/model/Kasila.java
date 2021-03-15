@@ -30,26 +30,20 @@ public class Kasila {
         this.predicted = predicted;
     }
 
-
-
-
-
-
-
-    public int getX() {
-        return x;
+    public int getZut() {
+        return zut;
     }
 
-    public void setX(int x) {
-        this.x = x;
+    public void setZut(int x) {
+        this.zut = x;
     }
 
-    public int getY() {
-        return y;
+    public int getErr() {
+        return zut;
     }
 
-    public void setY(int y) {
-        this.y = y;
+    public void setErr(int y) {
+        this.err = y;
     }
 
     public int getKoadrante() {
