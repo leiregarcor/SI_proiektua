@@ -1,20 +1,17 @@
 package model;
 
 public class Kasila {
-    private int x;
-    private int y;
+    private int err;
+    private int zut;
     private int koadrante;
-    private int actual;
-    private int predicted;
+    private int actual; //sol
+    private int predicted; //erabiltzaileak sartutakoa
     private String aukerak;
 
-    public Kasila(int x, int y, int koadrante, int actual, int predicted, String aukerak) {
-        this.x = x;
-        this.y = y;
-        this.koadrante = koadrante;
-        this.actual = actual;
-        this.predicted = predicted;
-        this.aukerak = aukerak;
+    public Kasila(int err, int zut) {
+        this.err = err;
+        this.zut = zut;
+        this.koadrante = (err/3)*(zut/3);
     }
 
     public int getActual() {

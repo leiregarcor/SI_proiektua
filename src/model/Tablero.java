@@ -16,4 +16,11 @@ public class Tablero {
 
     }
 
+    private void sortuMatrizea(){
+        for (int err=0; err<matrizea.length ; err++){
+            for (int zut=0; zut<matrizea[0].length; zut++){
+                matrizea[err][zut]= new Kasila(err, zut);
+            }
+        }
+    }
 }
