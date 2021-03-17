@@ -14,6 +14,15 @@ public class Kasila {
         this.koadrante = (err/3)*(zut/3);
     }
 
+    public boolean zuzenaDa(){
+        // Kasila bateko soluzioa sartutako balioarekin konparatuko da, true balio zuzena bada, false bestela.
+        boolean ema= false;
+        if (this.actual == this.predicted){
+            ema = true;
+        }
+        return ema;
+    }
+
     public int getActual() {
         return actual;
     }
@@ -61,7 +70,6 @@ public class Kasila {
     public void setAukerak(String aukerak) {
         this.aukerak = aukerak;
     }
-
 
 
 }
