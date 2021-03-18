@@ -1,14 +1,36 @@
 package model;
 
+
 public class Tablero {
  private Kasila[][] matrizea;
- private static Tablero nTablero = new Tablero(); /** = null */
- private int lvl;
+ private static Tablero nTablero = new Tablero();
+    private int lvl;
+    private String izena;
+
     private Tablero() {
         this.matrizea = new Kasila[9][9];
         this.sortuMatrizea();
         this.fitxeroaKargatu();
     }
+
+    public int getLvl() {
+        return lvl;
+    }
+
+    public void setLvl(int lvl) {
+        this.lvl = lvl;
+    }
+
+    public String getIzena() {
+        return izena;
+    }
+
+    public void setIzena(String izena) {
+        this.izena = izena;
+    }
+
+    /** = null */
+
     public static Tablero getNireTablero(){
        /** if(Tablero.nTablero==null) {
             Tablero.nTablero=new Tablero();
