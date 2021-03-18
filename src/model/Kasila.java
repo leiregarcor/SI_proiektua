@@ -16,11 +16,13 @@ public class Kasila {
 
     public boolean zuzenaDa(){
         // Kasila bateko soluzioa sartutako balioarekin konparatuko da, true balio zuzena bada, false bestela.
-        boolean ema= false;
+        /*boolean ema= false;
         if (this.actual == this.predicted){
             ema = true;
         }
         return ema;
+        * Mi propuesta :)*/
+        return this.actual==this.predicted;
     }
 
     public int getActual() {

@@ -3,7 +3,7 @@ package model;
 public class Tablero {
  private Kasila[][] matrizea;
  private static Tablero nTablero = new Tablero(); /** = null */
-
+ private int lvl;
     private Tablero() {
         this.matrizea = new Kasila[9][9];
         this.sortuMatrizea();
@@ -29,4 +29,5 @@ public class Tablero {
     private void fitxeroaKargatu(){
 
     }
+
 }
