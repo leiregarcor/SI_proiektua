@@ -25,6 +25,21 @@ public class Tablero {
             }
         }
     }
+    public boolean zuzenaDa(){
+        //soluzioa sartutako balioarekin konparatuko da, true balio zuzena bada, false bestela.
+        boolean ema = true;
+        int err=0;
+        int zut=0;
+
+        while(ema&& err<matrizea.length ){
+            while (ema && zut<matrizea[0].length){
+                ema= matrizea[err][zut].zuzenaDa();
+                zut++;
+            }
+            err++;
+        }
+        return ema;
+    }
 
     private void fitxeroaKargatu(){
 
