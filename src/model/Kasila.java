@@ -16,12 +16,6 @@ public class Kasila {
 
     public boolean zuzenaDa(){
         // Kasila bateko soluzioa sartutako balioarekin konparatuko da, true balio zuzena bada, false bestela.
-        /*boolean ema= false;
-        if (this.actual == this.predicted){
-            ema = true;
-        }
-        return ema;
-        * Mi propuesta :)*/
         return this.actual==this.predicted;
     }
 
@@ -73,5 +67,13 @@ public class Kasila {
         this.aukerak = aukerak;
     }
 
+    public static void main(String[] args) {
+        Kasila k = new Kasila(1,1);
+        k.setPredicted(1);
+        k.setActual(1);
+        System.out.println(k.zuzenaDa());
+        k.setPredicted(2);
+        System.out.println(k.zuzenaDa());
+    }
 
 }
