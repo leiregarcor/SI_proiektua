@@ -49,7 +49,7 @@ public class Tablero {
     }
     public boolean zuzenaDa(){
         //soluzioa sartutako balioarekin konparatuko da, true balio zuzena bada, false bestela.
-        boolean ema = true;
+       /** boolean ema = true;
         int err=0;
         int zut=0;
 
@@ -61,6 +61,10 @@ public class Tablero {
             err++;
         }
         return ema;
+
+        ASI NO VALE TAL Y COMO LO HEMOS PENSADO, PERO N ME LO BRREIS PORFI <3
+        lEIRE:)
+        */
     }
 
     private void fitxeroaKargatu(){
