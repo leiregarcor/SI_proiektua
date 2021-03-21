@@ -6,15 +6,20 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 public class SudokuCatalog {
-    private static SudokuCatalog nSudokuCatalog = new SudokuCatalog();
+
+    private static SudokuCatalog nSudokuCatalog = null;
+    public static SudokuCatalog getInstance(){
+        if(nSudokuCatalog == null){
+            nSudokuCatalog = new SudokuCatalog();
+        }
+            return nSudokuCatalog;
+        }
+
     private static ArrayList<Sudoku> sudokuak = new ArrayList<>();
-    public SudokuCatalog getInstance(){ return nSudokuCatalog;}
 
-    public static void main(String[] args) {
-        tableroakKargatu();
-    }
+    private SudokuCatalog(){}
 
-    public static void tableroakKargatu() {
+    public void tableroakKargatu() {
         BufferedReader reader;
         try {
             reader = new BufferedReader(new FileReader("resources/sudoku.txt"));
@@ -45,6 +50,9 @@ public class SudokuCatalog {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+    public Sudoku getSudoku(int index) {
+        return sudokuak.get(index);
     }
 }
 

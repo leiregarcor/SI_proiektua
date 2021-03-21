@@ -7,7 +7,9 @@ public class Tablero {
     private static Tablero nTablero = new Tablero();
 
 
-    private Tablero(){};
+    private Tablero(){
+        this.fitxeroaKargatu();
+    };
     public static Tablero getNireTablero(){
        return nTablero;
     }
@@ -15,15 +17,18 @@ public class Tablero {
     public boolean kasillaZuzenaDa(int zutabe,int errenkada ){
         return sudoku.getMatrizea()[zutabe][errenkada].zuzenaDa();
     }
-    private void fitxeroaKargatu(){
 
+    private void fitxeroaKargatu(){
+        SudokuCatalog.getInstance().tableroakKargatu();
     }
+
     public Sudoku getSudoku() {
         return sudoku;
     }
 
-    public void setSudoku(Sudoku sudoku) {
-        this.sudoku = sudoku;
+    public void setSudoku(int lvl ) {
+        SudokuCatalog.getInstance().getSudoku(lvl);
+
     }
 
 }
