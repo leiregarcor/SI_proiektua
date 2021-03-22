@@ -89,7 +89,7 @@ public class HasieraPanela extends JDialog {
 						else {
 							Component controllingFrame = null;
 							JOptionPane.showMessageDialog(controllingFrame,
-					                "Sartu duzun pasahitza okerra da. Saiatu berriro",
+					                "Zailtasun maila ez da egokia. Saiatu berriro",
 					                "Errore mezua",
 					                JOptionPane.ERROR_MESSAGE);
 							levelField.setText(null);
