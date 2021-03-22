@@ -27,8 +27,7 @@ public class Tablero {
     }
 
     public void setSudoku(int lvl ) {
-        SudokuCatalog.getInstance().getSudoku(lvl);
-
+        this.sudoku = SudokuCatalog.getInstance().getSudoku(lvl);
     }
 
 }
