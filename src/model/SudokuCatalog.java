@@ -19,14 +19,17 @@ public class SudokuCatalog {
 
     private SudokuCatalog(){}
 
-    public void tableroakKargatu() {
+    public  void main(String[] args){
+        tableroakKargatu();
+        getSudoku(1);
+    }
+    public  void tableroakKargatu() {
         BufferedReader reader;
         try {
             reader = new BufferedReader(new FileReader("resources/sudoku.txt"));
             String line = reader.readLine();
             Sudoku sudoku;
             while (line != null) {
-                System.out.println(line);
                 //Primera linea, marca el nombre del sudoku.
                 sudoku = new Sudoku();
                 sudoku.setIzena(line);
@@ -51,9 +54,17 @@ public class SudokuCatalog {
             e.printStackTrace();
         }
     }
+
     public Sudoku getSudoku(int index) {
-        return sudokuak.get(index);
+        //Dependiendo de la dificultad, se queda con un Sudoku o otro
+        for (Sudoku s: sudokuak){
+            if (s.getLvl() == index) return s;
+        }
+        System.out.println("Ez da aurkitu sailtazun horreko sudokurik!");
+        return null;
+        // Habra que comprobar la dificultad del sudoku
     }
+
 }
 
 

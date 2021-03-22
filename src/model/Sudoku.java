@@ -45,14 +45,14 @@ public class Sudoku {
     public boolean zuzenaDa(){
         //soluzioa sartutako balioarekin konparatuko da, true balio zuzena bada, false bestela.
          boolean ema = true;
-         int err=0;
-         int zut=0;
-         while(ema&& err<matrizea.length ){
-         while (ema && zut<matrizea[0].length){
-         ema= matrizea[err][zut].zuzenaDa();
-         zut++;
-         }
-         err++;
+         int zut=0,err=0;
+
+         while (ema && err<matrizea.length){
+            while (ema && zut<matrizea[0].length){
+                ema=matrizea[err][zut].zuzenaDa();
+                zut++;
+            }
+            err++;
          }
          return ema;
     }
@@ -60,10 +60,8 @@ public class Sudoku {
         //Index errenkada zenbakia markatzen du, zenbakiak, bete beharreko zenbakiak.
         //Boolearrak ze matrizean esleitu behar dugun markatuko du.
         if(m){
-            System.out.println(zenbakiak);
             for (int i = 0;i<=8;i++){
                 int x = Integer.parseInt(String.valueOf(zenbakiak.charAt(i)));
-
                 this.matrizea[index][i].setPredicted(x);
             }
         }else{
