@@ -55,7 +55,6 @@ public class Sudoku {
          err++;
          }
          return ema;
-        return true;
     }
     public  void balioakEsleitu(boolean m,int index, String zenbakiak){
         //Index errenkada zenbakia markatzen du, zenbakiak, bete beharreko zenbakiak.
