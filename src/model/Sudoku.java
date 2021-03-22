@@ -44,7 +44,7 @@ public class Sudoku {
 
     public boolean zuzenaDa(){
         //soluzioa sartutako balioarekin konparatuko da, true balio zuzena bada, false bestela.
-        /** boolean ema = true;
+         boolean ema = true;
          int err=0;
          int zut=0;
          while(ema&& err<matrizea.length ){
@@ -55,9 +55,6 @@ public class Sudoku {
          err++;
          }
          return ema;
-         ASI NO VALE TAL Y COMO LO HEMOS PENSADO, PERO N ME LO BRREIS PORFI <3
-         lEIRE:)
-         */
         return true;
     }
     public  void balioakEsleitu(boolean m,int index, String zenbakiak){
