@@ -9,7 +9,6 @@ import javax.swing.JDialog;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
-import org.graalvm.compiler.replacements.aarch64.AArch64StringUTF16Substitutions;
 
 import javax.swing.JTextField;
 import javax.swing.JLabel;
@@ -19,7 +18,7 @@ import java.awt.Font;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
-public class GUIGert extends JDialog {
+public class HasieraPanela extends JDialog {
 
 	private final JPanel contentPanel = new JPanel();
 	private JTextField levelField;
@@ -30,7 +29,7 @@ public class GUIGert extends JDialog {
 	 */
 	public static void main(String[] args) {
 		try {
-			GUIGert dialog = new GUIGert();
+			HasieraPanela dialog = new HasieraPanela();
 			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 			dialog.setVisible(true);
 		} catch (Exception e) {
@@ -41,7 +40,7 @@ public class GUIGert extends JDialog {
 	/**
 	 * Create the dialog.
 	 */
-	public GUIGert() {
+	public HasieraPanela() {
 		setTitle("Hasiera Panela");
 		setBounds(100, 100, 450, 300);
 		getContentPane().setLayout(null);
@@ -83,8 +82,8 @@ public class GUIGert extends JDialog {
 						String s = levelField.getText();
 						if (s.equals("1")||s.equals("2") || s.equals("3")) {
 							setVisible(false);
-						//	BigarrenLehioa l= new BigarrenLehioa();
-						//	l.main(null);
+							SudokuBista l= new SudokuBista();
+							l.main(null);
 							
 						}
 						else {
