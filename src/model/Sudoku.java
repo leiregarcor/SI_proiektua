@@ -46,7 +46,6 @@ public class Sudoku {
         //soluzioa sartutako balioarekin konparatuko da, true balio zuzena bada, false bestela.
          boolean ema = true;
          int zut=0,err=0;
-
          while (ema && err<matrizea.length){
             while (ema && zut<matrizea[0].length){
                 ema=matrizea[err][zut].zuzenaDa();
