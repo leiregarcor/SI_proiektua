@@ -177,7 +177,7 @@ public class SudokuBista extends JFrame {
 		panel.add(panel_3);
 		
 		JButton btnExit = new JButton("Exit");
-		btnExit.setBounds(43, 144, 66, 23);
+		btnExit.setBounds(34, 144, 66, 23);
 		btnExit.setHorizontalAlignment(SwingConstants.CENTER);
 		btnExit.setVerticalAlignment(SwingConstants.CENTER);
 		btnExit.addActionListener(new ActionListener() {
