@@ -158,7 +158,7 @@ public class SudokuBista extends JFrame {
 				}
 			}
 		});
-		btnOK.setBounds(20, 11, 103, 21);
+		btnOK.setBounds(10, 11, 103, 21);
 		btnOK.setHorizontalAlignment(SwingConstants.CENTER);
 		btnOK.setVerticalAlignment(SwingConstants.CENTER);
 		panel_6.add(btnOK);
@@ -170,7 +170,7 @@ public class SudokuBista extends JFrame {
 		});
 		btnLaguntza.setVerticalAlignment(SwingConstants.CENTER);
 		btnLaguntza.setHorizontalAlignment(SwingConstants.CENTER);
-		btnLaguntza.setBounds(20, 36, 103, 21);
+		btnLaguntza.setBounds(10, 36, 103, 21);
 		panel_6.add(btnLaguntza);
 		
 		JPanel panel_3 = new JPanel();
