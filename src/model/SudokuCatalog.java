@@ -54,7 +54,6 @@ public class SudokuCatalog {
             e.printStackTrace();
         }
     }
-
     public Sudoku getSudoku(int index) {
         //Dependiendo de la dificultad, se queda con un Sudoku o otro
         for (Sudoku s: sudokuak){

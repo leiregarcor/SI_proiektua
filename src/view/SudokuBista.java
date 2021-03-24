@@ -1,24 +1,18 @@
 package view;
 
 import java.awt.BorderLayout;
-import java.awt.Color;
 import java.awt.Component;
 import java.awt.EventQueue;
-
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
-import javax.swing.border.LineBorder;
-
 import java.awt.GridLayout;
 import java.awt.GridBagLayout;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
-
 import java.awt.GridBagConstraints;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
-
 import java.awt.Insets;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
@@ -103,7 +97,7 @@ public class SudokuBista extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				boolean a = true;
 				if(a) {
-					
+
 					JTextField aJTextField = (JTextField) unekoJPanel.getComponent(1); // JTextField
 					
 					//tField_textF.setText(aJTextField.getText());
