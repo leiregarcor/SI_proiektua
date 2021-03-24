@@ -94,7 +94,7 @@ public class SudokuBista extends JFrame {
 		
 		label_textF = new JTextField();
 		GridBagConstraints gbc_label_textF = new GridBagConstraints();
-		gbc_label_textF.fill = GridBagConstraints.BOTH;
+		//gbc_label_textF.fill = GridBagConstraints.BOTH;
 		gbc_label_textF.gridx = 0;
 		gbc_label_textF.gridy = 1;
 		panel_4.add(label_textF, gbc_label_textF);
@@ -120,7 +120,7 @@ public class SudokuBista extends JFrame {
 		
 		tField_textF = new JTextField();
 		GridBagConstraints gbc_tField_textF = new GridBagConstraints();
-		gbc_tField_textF.fill = GridBagConstraints.BOTH;
+		//gbc_tField_textF.fill = GridBagConstraints.BOTH;
 		gbc_tField_textF.gridx = 0;
 		gbc_tField_textF.gridy = 1;
 		panel_5.add(tField_textF, gbc_tField_textF);
