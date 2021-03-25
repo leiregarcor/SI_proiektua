@@ -1,6 +1,8 @@
 package model;
 
-public class Sudoku {
+import java.util.Observable;
+
+public class Sudoku extends Observable {
 
     private int lvl;
     private String izena;

@@ -21,10 +21,12 @@ import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.util.Observable;
+import java.util.Observer;
 import java.awt.event.ActionEvent;
 import javax.swing.JTextPane;
 
-public class SudokuBista extends JFrame {
+public class SudokuBista extends JFrame implements Observer {
 
 	private JPanel contentPane;
 	private JPanel panelGridLayout;
@@ -316,5 +318,11 @@ public class SudokuBista extends JFrame {
 		JTextField textField = new JTextField();
 		textField.setColumns(10);		
 		return textField;
+	}
+
+	@Override
+	public void update(Observable o, Object arg) {
+		// TODO Auto-generated method stub
+		
 	}
 }
