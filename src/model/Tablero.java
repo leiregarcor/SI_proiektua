@@ -1,7 +1,8 @@
 package model;
 
+import java.util.Observable;
 
-public class Tablero {
+public class Tablero extends Observable{
 
     private Sudoku sudoku;
     private static Tablero nTablero = new Tablero();

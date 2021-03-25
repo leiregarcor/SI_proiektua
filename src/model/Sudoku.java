@@ -1,6 +1,8 @@
 package model;
 
-public class Sudoku {
+import java.util.Observable;
+
+public class Sudoku extends Observable {
 
     private int lvl;
     private String izena;
@@ -46,7 +48,6 @@ public class Sudoku {
         //soluzioa sartutako balioarekin konparatuko da, true balio zuzena bada, false bestela.
          boolean ema = true;
          int zut=0,err=0;
-
          while (ema && err<matrizea.length){
             while (ema && zut<matrizea[0].length){
                 ema=matrizea[err][zut].zuzenaDa();
