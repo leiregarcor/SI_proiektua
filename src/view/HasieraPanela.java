@@ -84,8 +84,7 @@ public class HasieraPanela extends JDialog implements Observer {
 						String s = levelField.getText();
 						if (s.equals("1")||s.equals("2") || s.equals("3")) {
 							setVisible(false);
-							SudokuBista l= new SudokuBista();
-							l.main(null);
+							SudokuBista.main(null);
 							
 						}
 						else {
