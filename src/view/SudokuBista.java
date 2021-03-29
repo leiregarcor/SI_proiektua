@@ -38,7 +38,7 @@ public class SudokuBista extends JFrame implements Observer {
 	/**
 	 * Launch the application.
 	 */
-	public static void main() {
+	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
@@ -223,102 +223,17 @@ public class SudokuBista extends JFrame implements Observer {
 			koadrantePanel.setLayout(new GridLayout(3, 3, 0, 0));
 			for(int l=0;l<3;l++) {
 				for(int z=0;z<3;z++) {
-					koadrantePanel.add(getGbl_panel(l, z));
+					koadrantePanel.add(getKasillaBista());
 				}
 			}
 			return koadrantePanel;
 	}
 	
-	private JPanel getGbl_panel(int pL, int pZ) {
-
-			JPanel gbl_panel = new JPanel();
-			gbl_panel.setBorder(BorderFactory.createLineBorder(Color.black, 1));
-			GridBagLayout gbl_gbl_panel = new GridBagLayout();
-			gbl_gbl_panel.columnWidths = new int[] {0};
-			gbl_gbl_panel.rowHeights = new int[] {0, 0, 0};
-			gbl_gbl_panel.columnWeights = new double[]{1.0};
-			gbl_gbl_panel.rowWeights = new double[]{Double.MIN_VALUE, 0.0, 0.0};
-			gbl_panel.setLayout(gbl_gbl_panel);
-			GridBagConstraints gbc_lblNewLabel = new GridBagConstraints();
-			gbc_lblNewLabel.insets = new Insets(0, 0, 5, 0);
-			gbc_lblNewLabel.weighty = 0.33;
-			gbc_lblNewLabel.gridx = 0;
-			gbc_lblNewLabel.gridy = 0;
-			gbl_panel.add(getLblNewLabel(), gbc_lblNewLabel);
-			/*GridBagConstraints gbc_textField = new GridBagConstraints();
-			gbc_textField.gridheight = 2;
-			gbc_textField.gridwidth = 1;
-			gbc_textField.weightx = 0.76;
-			gbc_textField.weighty = 0.75;
-			gbc_textField.insets = new Insets(0, 0, 5, 0);
-			gbc_textField.gridx = 0;
-			gbc_textField.gridy = 1;
-			gbc_textField.fill = GridBagConstraints.BOTH;
-			gbl_panel.add(getTextField(), gbc_textField);*/
-			
-			gbl_panel.addMouseListener(new MouseListener() {
-				
-				@Override
-				public void mouseReleased(MouseEvent e) {
-					// TODO Auto-generated method stub
-					
-				}
-				
-				@Override
-				public void mousePressed(MouseEvent e) {
-					// TODO Auto-generated method stub
-				/*	unekoJPanel =  gbl_panel;
-					//unekoJPanel.setBorder(new LineBorder(Color.blue,2));
-					
-					//JLabel aJLabel = (JLabel) gbl_panel.getComponent(0); //label
-					
-					JLabel aJLabel = (JLabel) unekoJPanel.getComponent(0); //label EZ DU FUNTZIONATZEN
-					
-					
-					label_textF.setText(aJLabel.getText()); //label textField-ean agertuko da aukeratutako GridBagLayout-eko label-aren balioa
-					aJLabel.setText("a"); //  aukeratutako GridBagLayout-eko label-aren balioa "a" izatera aldatu
-					
-					JTextField aJTextField = (JTextField) gbl_panel.getComponent(1); // JTextField
-					
-					tField_textF.setText(aJTextField.getText());
-					aJTextField.setText("holi");*/
-				}
-				
-				@Override
-				public void mouseExited(MouseEvent e) {
-					// TODO Auto-generated method stub
-					
-				}
-				
-				@Override
-				public void mouseEntered(MouseEvent e) {
-					// TODO Auto-generated method stub
-					
-				}
-				
-				@Override
-				public void mouseClicked(MouseEvent e) {
-					// TODO Auto-generated method stub
-					/**JLabel aJLabel = (JLabel) gbl_panel.getComponent(0); //label
-					aJLabel.setText("a");*/
-					
-				}
-			});
-//		}
-		return gbl_panel;
+	private KasillaBista getKasillaBista() {
+		KasillaBista kasila= new KasillaBista();
+		return kasila;
 	}
 
-	
-	private JLabel getLblNewLabel() {
-		JLabel label = new JLabel();		
-		return	label ;		
-	}
-	
-	private JTextField getTextField() {
-		JTextField textField = new JTextField();
-		textField.setColumns(10);		
-		return textField;
-	}
 
 	@Override
 	public void update(Observable o, Object arg) {
