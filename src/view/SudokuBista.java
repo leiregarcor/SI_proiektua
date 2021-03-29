@@ -18,6 +18,8 @@ import java.awt.Insets;
 
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
+import javax.swing.JComponent;
+
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
@@ -32,7 +34,7 @@ public class SudokuBista extends JFrame implements Observer {
 	private JPanel panelGridLayout;
 	private JTextField label_textF;
 	private JTextField tField_textF;
-	private JPanel unekoJPanel;
+	private KasillaBista unekoa;
 	//private JPanel gbl_panel;
 
 	/**
@@ -138,7 +140,7 @@ public class SudokuBista extends JFrame implements Observer {
 				boolean a = true;
 				if(a) {
 
-					JTextField aJTextField = (JTextField) unekoJPanel.getComponent(1); // JTextField
+					//JTextField aJTextField = (JTextField) unekoJPanel.getComponent(1); // JTextField
 					
 					//tField_textF.setText(aJTextField.getText());
 					
@@ -223,7 +225,58 @@ public class SudokuBista extends JFrame implements Observer {
 			koadrantePanel.setLayout(new GridLayout(3, 3, 0, 0));
 			for(int l=0;l<3;l++) {
 				for(int z=0;z<3;z++) {
-					koadrantePanel.add(getKasillaBista());
+					KasillaBista k= getKasillaBista();
+					k.addMouseListener(new MouseListener() {
+						
+						@Override
+						public void mouseReleased(MouseEvent e) {
+							// TODO Auto-generated method stub
+						}
+						
+						@Override
+						public void mousePressed(MouseEvent e) {
+							// TODO Auto-generated method stub
+							if(unekoa!=null) {
+								unekoa.desaukeratu();
+							}
+							KasillaBista p= k;
+							//JComponent p = (JComponent) e.getSource();
+							p.aukeratu();
+							unekoa=p;
+							
+							//JLabel aJLabel = (JLabel) gbl_panel.getComponent(0); //label
+							/*	unekoJPanel =  gbl_panel;
+							JLabel aJLabel = (JLabel) unekoJPanel.getComponent(0); //label EZ DU FUNTZIONATZEN
+							
+							
+							label_textF.setText(aJLabel.getText()); //label textField-ean agertuko da aukeratutako GridBagLayout-eko label-aren balioa
+							aJLabel.setText("a"); //  aukeratutako GridBagLayout-eko label-aren balioa "a" izatera aldatu
+							
+							JTextField aJTextField = (JTextField) gbl_panel.getComponent(1); // JTextField
+							
+							tField_textF.setText(aJTextField.getText());
+							aJTextField.setText("holi");*/
+						}
+						
+						@Override
+						public void mouseExited(MouseEvent e) {
+							// TODO Auto-generated method stub
+							
+						}
+						
+						@Override
+						public void mouseEntered(MouseEvent e) {
+							// TODO Auto-generated method stub
+						}
+						
+						@Override
+						public void mouseClicked(MouseEvent e) {
+							// TODO Auto-generated method stub
+							/**JLabel aJLabel = (JLabel) gbl_panel.getComponent(0); //label
+							aJLabel.setText("a");*/
+						}
+					});
+					koadrantePanel.add(k);
 				}
 			}
 			return koadrantePanel;
@@ -231,6 +284,7 @@ public class SudokuBista extends JFrame implements Observer {
 	
 	private KasillaBista getKasillaBista() {
 		KasillaBista kasila= new KasillaBista();
+		
 		return kasila;
 	}
 

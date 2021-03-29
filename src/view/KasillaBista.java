@@ -14,6 +14,7 @@ import javax.swing.JLabel;
 
 
 public class KasillaBista  extends JPanel{
+	//Poner labels como atributos y setters y getters para usarlo desde mousepressed
 	public KasillaBista() {
 		super();
 		initialize();
@@ -41,56 +42,6 @@ public class KasillaBista  extends JPanel{
 		gbc_balioa.gridy = 1;
 		add(balioa, gbc_balioa);
 		
-		
-		this.addMouseListener(new MouseListener() {
-			
-			@Override
-			public void mouseReleased(MouseEvent e) {
-				// TODO Auto-generated method stub
-				
-			}
-			
-			@Override
-			public void mousePressed(MouseEvent e) {
-				// TODO Auto-generated method stub
-			/*	unekoJPanel =  gbl_panel;
-				//unekoJPanel.setBorder(new LineBorder(Color.blue,2));
-				
-				//JLabel aJLabel = (JLabel) gbl_panel.getComponent(0); //label
-				
-				JLabel aJLabel = (JLabel) unekoJPanel.getComponent(0); //label EZ DU FUNTZIONATZEN
-				
-				
-				label_textF.setText(aJLabel.getText()); //label textField-ean agertuko da aukeratutako GridBagLayout-eko label-aren balioa
-				aJLabel.setText("a"); //  aukeratutako GridBagLayout-eko label-aren balioa "a" izatera aldatu
-				
-				JTextField aJTextField = (JTextField) gbl_panel.getComponent(1); // JTextField
-				
-				tField_textF.setText(aJTextField.getText());
-				aJTextField.setText("holi");*/
-			}
-			
-			@Override
-			public void mouseExited(MouseEvent e) {
-				// TODO Auto-generated method stub
-				
-			}
-			
-			@Override
-			public void mouseEntered(MouseEvent e) {
-				// TODO Auto-generated method stub
-				
-			}
-			
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				// TODO Auto-generated method stub
-				/**JLabel aJLabel = (JLabel) gbl_panel.getComponent(0); //label
-				aJLabel.setText("a");*/
-				
-			}
-		});
-		
 	}
 	
 	private JLabel getLbl() {
@@ -98,8 +49,13 @@ public class KasillaBista  extends JPanel{
 		return	hautagaiak ;		
 	}
 	
-
+	public void aukeratu() {
+		setBorder(BorderFactory.createLineBorder(Color.black, 3));
+	}
 	
+	public void desaukeratu() {
+		setBorder(BorderFactory.createLineBorder(Color.black, 1));
+	}
 	
 	
 	
