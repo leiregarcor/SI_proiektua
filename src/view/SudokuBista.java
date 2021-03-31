@@ -32,8 +32,8 @@ public class SudokuBista extends JFrame implements Observer {
 
 	private JPanel contentPane;
 	private JPanel panelGridLayout;
-	private JTextField label_textF;
-	private JTextField tField_textF;
+	private JTextField HautagaiakText;
+	private JTextField BalioaText;
 	private KasillaBista unekoa;
 	//private JPanel gbl_panel;
 
@@ -96,13 +96,13 @@ public class SudokuBista extends JFrame implements Observer {
 		gbc_lblNewLabel.gridy = 0;
 		panel_4.add(lblNewLabel, gbc_lblNewLabel);
 		
-		label_textF = new JTextField();
-		GridBagConstraints gbc_label_textF = new GridBagConstraints();
+		HautagaiakText = new JTextField();
+		GridBagConstraints gbc_HautagaiakText = new GridBagConstraints();
 		//gbc_label_textF.fill = GridBagConstraints.BOTH;
-		gbc_label_textF.gridx = 0;
-		gbc_label_textF.gridy = 1;
-		panel_4.add(label_textF, gbc_label_textF);
-		label_textF.setColumns(10);
+		gbc_HautagaiakText.gridx = 0;
+		gbc_HautagaiakText.gridy = 1;
+		panel_4.add(HautagaiakText, gbc_HautagaiakText);
+		HautagaiakText.setColumns(10);
 		
 		JPanel panel_5 = new JPanel();
 		panel_2.add(panel_5);
@@ -122,13 +122,13 @@ public class SudokuBista extends JFrame implements Observer {
 		gbc_lblNewLabel_1.gridy = 0;
 		panel_5.add(lblNewLabel_1, gbc_lblNewLabel_1);
 		
-		tField_textF = new JTextField();
-		GridBagConstraints gbc_tField_textF = new GridBagConstraints();
+		BalioaText = new JTextField();
+		GridBagConstraints gbc_BalioaText = new GridBagConstraints();
 		//gbc_tField_textF.fill = GridBagConstraints.BOTH;
-		gbc_tField_textF.gridx = 0;
-		gbc_tField_textF.gridy = 1;
-		panel_5.add(tField_textF, gbc_tField_textF);
-		tField_textF.setColumns(10);
+		gbc_BalioaText.gridx = 0;
+		gbc_BalioaText.gridy = 1;
+		panel_5.add(BalioaText, gbc_BalioaText);
+		BalioaText.setColumns(10);
 		
 		JPanel panel_6 = new JPanel();
 		panel_2.add(panel_6);
@@ -155,9 +155,9 @@ public class SudokuBista extends JFrame implements Observer {
 			                "Sartu duzun Labela okerra da. Saiatu berriro",
 			                "Errore mezua",
 			                JOptionPane.ERROR_MESSAGE);
-					label_textF.setText(null);
-					tField_textF.setText(null);	
-					label_textF.requestFocus();
+					//label_textF.setText(null);
+					//tField_textF.setText(null);	
+					//label_textF.requestFocus();
 					
 				}
 			}
@@ -212,20 +212,23 @@ public class SudokuBista extends JFrame implements Observer {
 	
 	
 	private void koadranteMatrizeaSortu() {
+		int k=0;
 		for(int l=0;l<3;l++) {
 			for(int z=0;z<3;z++) {
-				panelGridLayout.add(getKoadrante_panel());
+				panelGridLayout.add(getKoadrante_panel(k));
+				k++;
 			}
 		}
 	}
 
-	private JPanel getKoadrante_panel() {
+	private JPanel getKoadrante_panel(int koad) {
 			JPanel koadrantePanel = new JPanel();
 			koadrantePanel.setBorder(BorderFactory.createLineBorder(Color.black, 2));
 			koadrantePanel.setLayout(new GridLayout(3, 3, 0, 0));
+			int kas=0;
 			for(int l=0;l<3;l++) {
 				for(int z=0;z<3;z++) {
-					KasillaBista k= getKasillaBista();
+					KasillaBista k= getKasillaBista(koad, kas);
 					k.addMouseListener(new MouseListener() {
 						
 						@Override
@@ -243,7 +246,15 @@ public class SudokuBista extends JFrame implements Observer {
 							//JComponent p = (JComponent) e.getSource();
 							p.aukeratu();
 							unekoa=p;
-							
+							HautagaiakText.setText(p.getHautagaiak());
+							if(p.getBalioa()==0) {
+								BalioaText.setText("");
+							}
+							else {
+								BalioaText.setText(String.valueOf(p.getBalioa()));
+							}
+							System.out.println(p.getKoadrante());
+							System.out.println(p.getKasila());
 							//JLabel aJLabel = (JLabel) gbl_panel.getComponent(0); //label
 							/*	unekoJPanel =  gbl_panel;
 							JLabel aJLabel = (JLabel) unekoJPanel.getComponent(0); //label EZ DU FUNTZIONATZEN
@@ -277,13 +288,14 @@ public class SudokuBista extends JFrame implements Observer {
 						}
 					});
 					koadrantePanel.add(k);
+					kas++;
 				}
 			}
 			return koadrantePanel;
 	}
 	
-	private KasillaBista getKasillaBista() {
-		KasillaBista kasila= new KasillaBista();
+	private KasillaBista getKasillaBista(int koad, int kas) {
+		KasillaBista kasila= new KasillaBista(koad, kas);
 		
 		return kasila;
 	}

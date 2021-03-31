@@ -11,13 +11,20 @@ import javax.swing.BorderFactory;
 import javax.swing.JPanel;
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import java.awt.Font;
 
 
 public class KasillaBista  extends JPanel{
 	//Poner labels como atributos y setters y getters para usarlo desde mousepressed
-	public KasillaBista() {
+	private JLabel balioa;
+	private JLabel hautagaiak;
+	private int Koadrante;
+	private int Kasila;
+	public KasillaBista(int k, int i) {
 		super();
 		initialize();
+		Koadrante=k;
+		Kasila=i;
 	}
 	
 	private void initialize() {
@@ -28,25 +35,24 @@ public class KasillaBista  extends JPanel{
 		panel.columnWeights = new double[]{1.0};
 		panel.rowWeights = new double[]{Double.MIN_VALUE,0.0};
 		this.setLayout(panel);
+		
+		hautagaiak = new JLabel();
+		hautagaiak.setForeground(Color.RED);
 		GridBagConstraints gbc_hautagaiak = new GridBagConstraints();
 		gbc_hautagaiak.insets = new Insets(0, 0, 5, 0);
 		gbc_hautagaiak.weighty = 0.1;
 		gbc_hautagaiak.gridx = 0;
 		gbc_hautagaiak.gridy = 0;
-		this.add(getLbl(), gbc_hautagaiak);
+		this.add(hautagaiak, gbc_hautagaiak);
 		
-		JLabel balioa = new JLabel();
+		balioa = new JLabel();
+		balioa.setFont(new Font("Tahoma", Font.PLAIN, 30));
 		GridBagConstraints gbc_balioa = new GridBagConstraints();
 		gbc_balioa.weighty = 0.5;
 		gbc_balioa.gridx = 0;
 		gbc_balioa.gridy = 1;
 		add(balioa, gbc_balioa);
 		
-	}
-	
-	private JLabel getLbl() {
-		JLabel hautagaiak = new JLabel();		
-		return	hautagaiak ;		
 	}
 	
 	public void aukeratu() {
@@ -57,10 +63,39 @@ public class KasillaBista  extends JPanel{
 		setBorder(BorderFactory.createLineBorder(Color.black, 1));
 	}
 	
+	public String getHautagaiak() {
+		return hautagaiak.getText();
+	}
 	
+	public int getBalioa() {
+		if(balioa.getText()=="") {
+			return 0;
+		}
+		else{
+			return  Integer.parseInt(balioa.getText());
+		}
+	}
 	
+	public void setHautagaiak(String s) {
+		if(s==null) {
+			hautagaiak.setText(null);
+		}
+		else {
+			hautagaiak.setText(s);
+		}
+	}
 	
+	public void setBalioa(int i) {
+		String s= String.valueOf(i);
+		balioa.setText(s);
+	}
 	
+	public int getKoadrante() {
+		return Koadrante;
+	}
 	
+	public int getKasila() {
+		return Kasila;
+	}
 	
 }
