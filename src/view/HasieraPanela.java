@@ -89,7 +89,6 @@ public class HasieraPanela extends JDialog implements Observer {
 							Tablero t = Tablero.getNireTablero();
 							t.setSudoku(Integer.parseInt(s));
 							SudokuBista.main(null); 
-							
 						}
 						else {
 							Component controllingFrame = null;
