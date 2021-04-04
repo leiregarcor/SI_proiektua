@@ -35,7 +35,7 @@ public class SudokuBista extends JFrame implements Observer {
 	private JTextField HautagaiakText;
 	private JTextField BalioaText;
 	private KasillaBista unekoa;
-	//private JPanel gbl_panel;
+    private KasillaBista[][] matrizea = new KasillaBista[9][9];
 
 	/**
 	 * Launch the application.
@@ -228,7 +228,7 @@ public class SudokuBista extends JFrame implements Observer {
 			int kas=0;
 			for(int l=0;l<3;l++) {
 				for(int z=0;z<3;z++) {
-					KasillaBista k= getKasillaBista(koad, kas);
+					KasillaBista k= kasilaSortu(koad, kas);
 					k.addMouseListener(new MouseListener() {
 						
 						@Override
@@ -253,20 +253,6 @@ public class SudokuBista extends JFrame implements Observer {
 							else {
 								BalioaText.setText(String.valueOf(p.getBalioa()));
 							}
-							System.out.println(p.getKoadrante());
-							System.out.println(p.getKasila());
-							//JLabel aJLabel = (JLabel) gbl_panel.getComponent(0); //label
-							/*	unekoJPanel =  gbl_panel;
-							JLabel aJLabel = (JLabel) unekoJPanel.getComponent(0); //label EZ DU FUNTZIONATZEN
-							
-							
-							label_textF.setText(aJLabel.getText()); //label textField-ean agertuko da aukeratutako GridBagLayout-eko label-aren balioa
-							aJLabel.setText("a"); //  aukeratutako GridBagLayout-eko label-aren balioa "a" izatera aldatu
-							
-							JTextField aJTextField = (JTextField) gbl_panel.getComponent(1); // JTextField
-							
-							tField_textF.setText(aJTextField.getText());
-							aJTextField.setText("holi");*/
 						}
 						
 						@Override
@@ -294,13 +280,38 @@ public class SudokuBista extends JFrame implements Observer {
 			return koadrantePanel;
 	}
 	
-	private KasillaBista getKasillaBista(int koad, int kas) {
-		KasillaBista kasila= new KasillaBista(koad, kas);
-		
-		return kasila;
-	}
 
-
+	public KasillaBista kasilaSortu(int koad, int kas) {
+    	int zut= kas%3;
+    	int err= kas/3;
+    	int gehizut;
+    	int gehierr;
+    	int koadzut= koad%3;
+    	int koaderr= koad/3;
+    	if(koadzut==0){
+    		gehizut=0;
+    	}
+    	else if(koadzut==1){
+    		gehizut=3;
+    	}
+    	else {
+    		gehizut=6;
+    	}
+    	
+    	if(koaderr==0) {
+    		gehierr=0;
+    	}
+    	else if(koaderr==1) {
+    		gehierr=3;
+    	}
+    	else {
+    		gehierr=6;
+    	}
+    	KasillaBista k = new KasillaBista(koad, err+gehierr, zut+gehizut);
+    	matrizea[err+gehierr][zut+gehizut] = k;
+    	return k;
+    }
+	
 	@Override
 	public void update(Observable o, Object arg) {
 		// TODO Auto-generated method stub

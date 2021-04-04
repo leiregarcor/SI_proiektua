@@ -81,7 +81,7 @@ public class Sudoku extends Observable {
     	int gehierr;
     	int koadzut= koad%3;
     	int koaderr= koad/3;
-    	if(koadzut==0) {
+    	if(koadzut==0){
     		gehizut=0;
     	}
     	else if(koadzut==1){
@@ -100,7 +100,6 @@ public class Sudoku extends Observable {
     	else {
     		gehierr=6;
     	}
-    	return matrizea[err+gehierr][zut+gehizut];   	
-    	
+    	return matrizea[err+gehierr][zut+gehizut];   	    	
     }
 }
