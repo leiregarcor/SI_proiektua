@@ -9,6 +9,7 @@ import javax.swing.JDialog;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+import model.Tablero;
 
 import javax.swing.JTextField;
 import javax.swing.JLabel;
@@ -16,9 +17,11 @@ import javax.swing.JOptionPane;
 
 import java.awt.Font;
 import java.awt.event.ActionListener;
+import java.util.Observable;
+import java.util.Observer;
 import java.awt.event.ActionEvent;
 
-public class HasieraPanela extends JDialog {
+public class HasieraPanela extends JDialog implements Observer {
 
 	private final JPanel contentPanel = new JPanel();
 	private JTextField levelField;
@@ -82,8 +85,10 @@ public class HasieraPanela extends JDialog {
 						String s = levelField.getText();
 						if (s.equals("1")||s.equals("2") || s.equals("3")) {
 							setVisible(false);
-							SudokuBista l= new SudokuBista();
-							l.main(null);
+							//sudokua kargatu.
+							Tablero t = Tablero.getNireTablero();
+							t.setSudoku(Integer.parseInt(s));
+							SudokuBista.main(null); 
 							
 						}
 						else {
@@ -116,5 +121,11 @@ public class HasieraPanela extends JDialog {
 				buttonPane.add(cancelButton);
 			}
 		}
+	}
+
+	@Override
+	public void update(Observable o, Object arg) {
+		// TODO Auto-generated method stub
+		
 	}
 }
