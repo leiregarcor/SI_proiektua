@@ -59,7 +59,6 @@ public class SudokuCatalog {
         for (Sudoku s: sudokuak){
             if (s.getLvl() == index) return s;
         }
-        System.out.println("Ez da aurkitu sailtazun horreko sudokurik!");
         return null;
         // Habra que comprobar la dificultad del sudoku
     }

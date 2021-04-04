@@ -137,29 +137,19 @@ public class SudokuBista extends JFrame implements Observer {
 		JButton btnOK = new JButton("Ok");
 		btnOK.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				boolean a = true;
-				if(a) {
-
-					//JTextField aJTextField = (JTextField) unekoJPanel.getComponent(1); // JTextField
-					
-					//tField_textF.setText(aJTextField.getText());
-					
-					//label.setText(label_textF.getText());
-					//textField.setText(tField_textF.getText());
-					
+				try {
+					int balio = Integer.parseInt(BalioaText.getText());
 					
 				}
-				else {
+				catch(NumberFormatException n) {
 					Component controllingFrame = null;
 					JOptionPane.showMessageDialog(controllingFrame ,
-			                "Sartu duzun Labela okerra da. Saiatu berriro",
+			                "Sartu duzun Balioa okerra da. Sartu zenbaki bat",
 			                "Errore mezua",
 			                JOptionPane.ERROR_MESSAGE);
-					//label_textF.setText(null);
-					//tField_textF.setText(null);	
-					//label_textF.requestFocus();
-					
+					//n.printStackTrace();					
 				}
+				
 			}
 		});
 		btnOK.setBounds(10, 11, 103, 21);

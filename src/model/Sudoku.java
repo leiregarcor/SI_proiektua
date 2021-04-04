@@ -73,33 +73,5 @@ public class Sudoku extends Observable {
 
         }
     }
-    
-    public Kasila kasilaAurkitu(int koad, int kas) {
-    	int zut= kas%3;
-    	int err= kas/3;
-    	int gehizut;
-    	int gehierr;
-    	int koadzut= koad%3;
-    	int koaderr= koad/3;
-    	if(koadzut==0){
-    		gehizut=0;
-    	}
-    	else if(koadzut==1){
-    		gehizut=3;
-    	}
-    	else {
-    		gehizut=6;
-    	}
-    	
-    	if(koaderr==0) {
-    		gehierr=0;
-    	}
-    	else if(koaderr==1) {
-    		gehierr=3;
-    	}
-    	else {
-    		gehierr=6;
-    	}
-    	return matrizea[err+gehierr][zut+gehizut];   	    	
-    }
+ 
 }
