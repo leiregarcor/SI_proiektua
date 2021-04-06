@@ -137,8 +137,24 @@ public class SudokuBista extends JFrame implements Observer {
 		JButton btnOK = new JButton("Ok");
 		btnOK.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				try {
+				if (unekoa==null) {
+					Component controllingFrame = null;
+					JOptionPane.showMessageDialog(controllingFrame ,
+			                "Ez duzu kasilarik aukeratu. Aukeratu kasila bat.",
+			                "Adi!",
+			                JOptionPane.ERROR_MESSAGE);	
+					HautagaiakText.setText(" ");
+					BalioaText.setText(" ");
+				}
+				try {//egokiena ereduari pasatu zer sartu den eta ereduak ikustea ea egokiak diren balioak eta update-ak esango dio erabiltzaileari ea balioak egokiak diren 
 					int balio = Integer.parseInt(BalioaText.getText());
+					String s = HautagaiakText.getText();
+					String[] arrayS = s.split(" ");
+					for(String x: arrayS) {
+						//Begiratuko dugu exceptionen bat botatzen duen.
+						Integer.parseInt(x);
+					}
+					//Momentu honetan ez badu exceptionik eman badakigu erabiltzaileak dena ondo sartu duela.
 					
 				}
 				catch(NumberFormatException n) {
@@ -147,6 +163,13 @@ public class SudokuBista extends JFrame implements Observer {
 			                "Sartu duzun Balioa okerra da. Sartu zenbaki bat",
 			                "Errore mezua",
 			                JOptionPane.ERROR_MESSAGE);
+					
+					if(unekoa!=null) {
+						unekoa.desaukeratu();
+					}
+					unekoa= null;
+					HautagaiakText.setText(" ");
+					BalioaText.setText(" ");
 					//n.printStackTrace();					
 				}
 				

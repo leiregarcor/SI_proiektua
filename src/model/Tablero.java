@@ -30,5 +30,16 @@ public class Tablero extends Observable{
     public void setSudoku(int lvl ) {
         this.sudoku = SudokuCatalog.getInstance().getSudoku(lvl);
     }
+    
+    public void hautagaiakEguneratu(int pErr, int pZut, String pHautagaiak) {
+    	setChanged();
+    	notifyObservers();
+    }
+    
+    public void BalioakEguneratu(int pErr, int pZut, String pBalio) {
+    	setChanged();
+    	notifyObservers();
+    	
+    }
 
 }
