@@ -9,6 +9,9 @@ import java.awt.event.MouseListener;
 
 import javax.swing.BorderFactory;
 import javax.swing.JPanel;
+
+import model.Kasila;
+
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import java.awt.Font;
@@ -19,12 +22,16 @@ public class KasillaBista  extends JPanel{
 	private JLabel balioa;
 	private JLabel hautagaiak;
 	private int Koadrante;
-	private int Kasila;
-	public KasillaBista(int k, int i) {
+    private int err;
+    private int zut;
+
+    
+	public KasillaBista(int k, int pErr, int pZut) {
 		super();
 		initialize();
 		Koadrante=k;
-		Kasila=i;
+		err=pErr;
+		zut= pZut;
 	}
 	
 	private void initialize() {
@@ -87,15 +94,25 @@ public class KasillaBista  extends JPanel{
 	
 	public void setBalioa(int i) {
 		String s= String.valueOf(i);
-		balioa.setText(s);
+		if (i==0) {
+			balioa.setText(" ");
+		}
+		else {
+			balioa.setText(s);
+		}
 	}
 	
 	public int getKoadrante() {
 		return Koadrante;
 	}
 	
-	public int getKasila() {
-		return Kasila;
+	public int getErr() {
+		return err;
 	}
 	
+	public int getZut() {
+		return zut;
+	}
+	
+    
 }

@@ -15,7 +15,7 @@ public class SudokuCatalog {
             return nSudokuCatalog;
         }
 
-    private static ArrayList<Sudoku> sudokuak = new ArrayList<>();
+    private static ArrayList<Tablero> sudokuak = new ArrayList<>();
 
     private SudokuCatalog(){}
 
@@ -28,10 +28,10 @@ public class SudokuCatalog {
         try {
             reader = new BufferedReader(new FileReader("resources/sudoku.txt"));
             String line = reader.readLine();
-            Sudoku sudoku;
+            Tablero sudoku;
             while (line != null) {
                 //Primera linea, marca el nombre del sudoku.
-                sudoku = new Sudoku();
+                sudoku = new Tablero();
                 sudoku.setIzena(line);
                 //Siguiente linea marca el nivel
                 line = reader.readLine();
@@ -43,6 +43,7 @@ public class SudokuCatalog {
                     sudoku.balioakEsleitu(true,i,line);
                 }
                 for (int i = 0; i <= 8;i++){
+                	//soluzioa
                     line = reader.readLine();
                     sudoku.balioakEsleitu(false,i,line);
                 }
@@ -54,12 +55,11 @@ public class SudokuCatalog {
             e.printStackTrace();
         }
     }
-    public Sudoku getSudoku(int index) {
+    public Tablero getSudoku(int index) {
         //Dependiendo de la dificultad, se queda con un Sudoku o otro
-        for (Sudoku s: sudokuak){
+        for (Tablero s: sudokuak){
             if (s.getLvl() == index) return s;
         }
-        System.out.println("Ez da aurkitu sailtazun horreko sudokurik!");
         return null;
         // Habra que comprobar la dificultad del sudoku
     }

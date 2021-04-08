@@ -9,7 +9,7 @@ import javax.swing.JDialog;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
-import model.Tablero;
+import model.Sudoku;
 
 import javax.swing.JTextField;
 import javax.swing.JLabel;
@@ -86,10 +86,9 @@ public class HasieraPanela extends JDialog implements Observer {
 						if (s.equals("1")||s.equals("2") || s.equals("3")) {
 							setVisible(false);
 							//sudokua kargatu.
-							Tablero t = Tablero.getNireTablero();
+							Sudoku t = Sudoku.getNireSudoku();							
 							t.setSudoku(Integer.parseInt(s));
 							SudokuBista.main(null); 
-							
 						}
 						else {
 							Component controllingFrame = null;
