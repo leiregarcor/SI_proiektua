@@ -2,6 +2,7 @@ package model;
 
 import java.util.Observable;
 
+
 public class Sudoku extends Observable{
 
     private Tablero tablero;
@@ -10,7 +11,8 @@ public class Sudoku extends Observable{
 
     private Sudoku(){
         this.fitxeroaKargatu();
-    };
+    }
+    
     public static Sudoku getNireSudoku(){
        return nSudoku;
     }
@@ -20,17 +22,18 @@ public class Sudoku extends Observable{
     }
 
     private void fitxeroaKargatu(){
-        SudokuCatalog.getInstance().tableroakKargatu();
-        setChanged();
-    	notifyObservers();
+        TableroCatalog.getInstance().tableroakKargatu();
+
     }
 
-    public Tablero getSudoku() {
+    public Tablero getTablero() {
         return tablero;
     }
 
-    public void setSudoku(int lvl ) {
-        this.tablero = SudokuCatalog.getInstance().getSudoku(lvl);
+    public void setTablero(int lvl ) {
+        this.tablero = TableroCatalog.getInstance().getTablero(lvl);        
+        setChanged();
+    	notifyObservers();
     }
     
     public void hautagaiakEguneratu(int pErr, int pZut, String pHautagaiak) {
@@ -38,10 +41,10 @@ public class Sudoku extends Observable{
     	notifyObservers();
     }
     
-    public void BalioakEguneratu(int pErr, int pZut, String pBalio) {
+    public void balioakEguneratu(int pErr, int pZut, int pBalio) {    	
+    	tablero.getMatrizea()[pErr][pZut].setPredicted(pBalio);
     	setChanged();
-    	notifyObservers();
-    	//klase mezua sortu balioak aldatu ahal izateko
+    	notifyObservers(new int[]{pErr, pZut, pBalio});
     	
     }
 

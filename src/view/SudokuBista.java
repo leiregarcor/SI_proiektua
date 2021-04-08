@@ -10,6 +10,7 @@ import javax.swing.border.EmptyBorder;
 
 import model.Kasila;
 import model.Sudoku;
+import model.Tablero;
 
 import java.awt.GridLayout;
 import java.awt.GridBagLayout;
@@ -50,6 +51,8 @@ public class SudokuBista extends JFrame implements Observer {
 				try {
 					SudokuBista frame = new SudokuBista();
 					frame.setVisible(true);
+					Sudoku t = Sudoku.getNireSudoku();							
+					t.setTablero(1); //HasieraPanela ez denez sprint honen parte soilik 1 zailtasunarekin frogatuko dugu.
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -60,7 +63,8 @@ public class SudokuBista extends JFrame implements Observer {
 	/**
 	 * Create the frame.
 	 */
-	public SudokuBista() {		
+	public SudokuBista() {	
+
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		initialize();
 		setTitle("Sudoku");
@@ -165,6 +169,30 @@ public class SudokuBista extends JFrame implements Observer {
 						Integer.parseInt(x);
 					}
 					//Momentu honetan ez badu exceptionik eman badakigu erabiltzaileak dena ondo sartu duela.
+					//Balioak eguneratu
+					Sudoku.getNireSudoku().balioakEguneratu(unekoa.getErr(),unekoa.getZut(), balio);
+					Tablero t = Sudoku.getNireSudoku().getTablero();
+					if (t.partidaBukatu()) {
+						if (t.zuzenaDa()) {
+							Component controllingFrame = null;
+							JOptionPane.showMessageDialog(controllingFrame ,
+					                "Sudokua asmatu duzu! :) ",
+					                "Zorionak!",
+					                JOptionPane.PLAIN_MESSAGE);	
+						}
+						else {
+							Component controllingFrame = null;
+							JOptionPane.showMessageDialog(controllingFrame ,
+					                "Sudokua gaizki dago :( ",
+					                "Adi!",
+					                JOptionPane.ERROR_MESSAGE);								
+						}
+						System.exit(0);
+					}
+					
+					
+					//Hautagaiak eguneratu
+					//TODO
 					
 				}
 				catch(NumberFormatException n) {
@@ -180,7 +208,7 @@ public class SudokuBista extends JFrame implements Observer {
 					unekoa= null;
 					HautagaiakText.setText(" ");
 					BalioaText.setText(" ");
-					//n.printStackTrace();					
+									
 				}
 				
 			}
@@ -228,8 +256,7 @@ public class SudokuBista extends JFrame implements Observer {
 			panelGridLayout.setBorder(BorderFactory.createLineBorder(Color.black, 2));
 			panelGridLayout.setLayout(new GridLayout(3, 3, 0, 0));
 			//gridLayoutPane.add(getGbl_panel());
-			this.koadranteMatrizeaSortu();
-			
+			this.koadranteMatrizeaSortu();			
 		}
 		return panelGridLayout;
 	}
@@ -340,18 +367,20 @@ public class SudokuBista extends JFrame implements Observer {
 	public void update(Observable o, Object arg) {
 		// TODO Auto-generated method stub
 		Sudoku s = Sudoku.getNireSudoku();
+		
 		if (arg==null) {
 			//matrize osoa eguneratu 
 	        for (int err=0; err<matrizea.length ; err++){
 	            for (int zut=0; zut<matrizea[0].length; zut++){
-	            	int i = s.getSudoku().getMatrizea()[err][zut].getPredicted();
+	            	int i = s.getTablero().getMatrizea()[err][zut].getPredicted();
 	                matrizea[err][zut].setBalioa(i); 
 	            }
 	        }
 		}
 		else {
 			//pasatutako kasila eguneratu
-			
+			int[] info = (int[])arg;
+			 matrizea[info[0]][info[1]].setBalioa(info[2]); 
 		}		
 	}
 }

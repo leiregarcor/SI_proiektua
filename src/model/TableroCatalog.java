@@ -5,59 +5,62 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 
-public class SudokuCatalog {
-
-    private static SudokuCatalog nSudokuCatalog = null;
-    public static SudokuCatalog getInstance(){
-        if(nSudokuCatalog == null){
-            nSudokuCatalog = new SudokuCatalog();
+public class TableroCatalog {
+	private static ArrayList<Tablero> tableroak = new ArrayList<>();
+    private static TableroCatalog nTableroCatalog = null;
+    
+    public static TableroCatalog getInstance(){
+        if(nTableroCatalog == null){
+        	nTableroCatalog = new TableroCatalog();
         }
-            return nSudokuCatalog;
+            return nTableroCatalog;
         }
 
-    private static ArrayList<Tablero> sudokuak = new ArrayList<>();
+    
 
-    private SudokuCatalog(){}
+    private TableroCatalog(){}
 
     public  void main(String[] args){
         tableroakKargatu();
-        getSudoku(1);
+        getTablero(1);
     }
+    
+    
     public  void tableroakKargatu() {
         BufferedReader reader;
         try {
             reader = new BufferedReader(new FileReader("resources/sudoku.txt"));
             String line = reader.readLine();
-            Tablero sudoku;
+            Tablero tablero;
             while (line != null) {
                 //Primera linea, marca el nombre del sudoku.
-                sudoku = new Tablero();
-                sudoku.setIzena(line);
+            	tablero = new Tablero();
+            	tablero.setIzena(line);
                 //Siguiente linea marca el nivel
                 line = reader.readLine();
-                sudoku.setLvl(Integer.parseInt(line));
+                tablero.setLvl(Integer.parseInt(line));
                 //Ahora empezamos los setup de los dos tipos de casillas.
                 //Primeros nueve numeros
                 for (int i = 0; i <= 8;i++){
                     line = reader.readLine();
-                    sudoku.balioakEsleitu(true,i,line);
+                    tablero.balioakEsleitu(true,i,line);
                 }
                 for (int i = 0; i <= 8;i++){
                 	//soluzioa
                     line = reader.readLine();
-                    sudoku.balioakEsleitu(false,i,line);
+                    tablero.balioakEsleitu(false,i,line);
                 }
                     line = reader.readLine();
-              sudokuak.add(sudoku);
+                    tableroak.add(tablero);
             }
             reader.close();
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
-    public Tablero getSudoku(int index) {
+    public Tablero getTablero(int index) {
         //Dependiendo de la dificultad, se queda con un Sudoku o otro
-        for (Tablero s: sudokuak){
+        for (Tablero s: tableroak){
             if (s.getLvl() == index) return s;
         }
         return null;

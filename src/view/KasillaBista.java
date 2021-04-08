@@ -71,11 +71,16 @@ public class KasillaBista  extends JPanel{
 	}
 	
 	public String getHautagaiak() {
-		return hautagaiak.getText();
+		if(hautagaiak.getText()=="") {
+			return " ";
+		}
+		else{
+			return  hautagaiak.getText();
+		}
 	}
 	
 	public int getBalioa() {
-		if(balioa.getText()=="") {
+		if(balioa.getText()==" ") {
 			return 0;
 		}
 		else{
@@ -84,8 +89,8 @@ public class KasillaBista  extends JPanel{
 	}
 	
 	public void setHautagaiak(String s) {
-		if(s==null) {
-			hautagaiak.setText(null);
+		if(s=="") {
+			hautagaiak.setText("");
 		}
 		else {
 			hautagaiak.setText(s);

@@ -1,4 +1,5 @@
 import view.HasieraPanela;
+import view.SudokuBista;
 
 public class ProgramaNagusia {
 
@@ -12,7 +13,8 @@ public class ProgramaNagusia {
 		 * eskaten zaio erabiltzaileari.
 		 * 
 		 * */
-		HasieraPanela.main(null);
+		SudokuBista.main(null);
+		
 	}
 
 }
