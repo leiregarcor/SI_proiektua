@@ -228,8 +228,7 @@ public class SudokuBista extends JFrame implements Observer {
 			panelGridLayout.setBorder(BorderFactory.createLineBorder(Color.black, 2));
 			panelGridLayout.setLayout(new GridLayout(3, 3, 0, 0));
 			//gridLayoutPane.add(getGbl_panel());
-			this.koadranteMatrizeaSortu();
-			
+			this.koadranteMatrizeaSortu();			
 		}
 		return panelGridLayout;
 	}

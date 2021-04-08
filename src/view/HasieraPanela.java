@@ -1,9 +1,6 @@
 package view;
 
-import java.awt.BorderLayout;
 import java.awt.Component;
-import java.awt.FlowLayout;
-
 import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JPanel;
@@ -17,11 +14,9 @@ import javax.swing.JOptionPane;
 
 import java.awt.Font;
 import java.awt.event.ActionListener;
-import java.util.Observable;
-import java.util.Observer;
 import java.awt.event.ActionEvent;
 
-public class HasieraPanela extends JDialog implements Observer {
+public class HasieraPanela extends JDialog {
 
 	private final JPanel contentPanel = new JPanel();
 	private JTextField levelField;
@@ -45,6 +40,7 @@ public class HasieraPanela extends JDialog implements Observer {
 	 */
 	public HasieraPanela() {
 		setTitle("Hasiera Panela");
+		
 		setBounds(100, 100, 450, 300);
 		getContentPane().setLayout(null);
 		
@@ -86,9 +82,10 @@ public class HasieraPanela extends JDialog implements Observer {
 						if (s.equals("1")||s.equals("2") || s.equals("3")) {
 							setVisible(false);
 							//sudokua kargatu.
+							SudokuBista.main(null);
 							Sudoku t = Sudoku.getNireSudoku();							
 							t.setSudoku(Integer.parseInt(s));
-							SudokuBista.main(null); 
+							 
 						}
 						else {
 							Component controllingFrame = null;
@@ -122,9 +119,4 @@ public class HasieraPanela extends JDialog implements Observer {
 		}
 	}
 
-	@Override
-	public void update(Observable o, Object arg) {
-		// TODO Auto-generated method stub
-		
-	}
 }
