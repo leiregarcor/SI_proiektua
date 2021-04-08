@@ -5,25 +5,27 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 
-public class SudokuCatalog {
+public class TableroCatalog {
 	private static ArrayList<Tablero> tableroak = new ArrayList<>();
-    private static SudokuCatalog nSudokuCatalog = null;
+    private static TableroCatalog nTableroCatalog = null;
     
-    public static SudokuCatalog getInstance(){
-        if(nSudokuCatalog == null){
-            nSudokuCatalog = new SudokuCatalog();
+    public static TableroCatalog getInstance(){
+        if(nTableroCatalog == null){
+        	nTableroCatalog = new TableroCatalog();
         }
-            return nSudokuCatalog;
+            return nTableroCatalog;
         }
 
     
 
-    private SudokuCatalog(){}
+    private TableroCatalog(){}
 
     public  void main(String[] args){
         tableroakKargatu();
-        getSudoku(1);
+        getTablero(1);
     }
+    
+    
     public  void tableroakKargatu() {
         BufferedReader reader;
         try {
@@ -56,7 +58,7 @@ public class SudokuCatalog {
             e.printStackTrace();
         }
     }
-    public Tablero getSudoku(int index) {
+    public Tablero getTablero(int index) {
         //Dependiendo de la dificultad, se queda con un Sudoku o otro
         for (Tablero s: tableroak){
             if (s.getLvl() == index) return s;

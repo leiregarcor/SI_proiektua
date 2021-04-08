@@ -50,6 +50,8 @@ public class SudokuBista extends JFrame implements Observer {
 				try {
 					SudokuBista frame = new SudokuBista();
 					frame.setVisible(true);
+					Sudoku t = Sudoku.getNireSudoku();							
+					t.setTablero(1); //HasieraPanela ez denez sprint honen parte soilik 1 zailtasunarekin frogatuko dugu.
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -60,7 +62,8 @@ public class SudokuBista extends JFrame implements Observer {
 	/**
 	 * Create the frame.
 	 */
-	public SudokuBista() {		
+	public SudokuBista() {	
+
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		initialize();
 		setTitle("Sudoku");
@@ -180,7 +183,7 @@ public class SudokuBista extends JFrame implements Observer {
 					unekoa= null;
 					HautagaiakText.setText(" ");
 					BalioaText.setText(" ");
-					//n.printStackTrace();					
+									
 				}
 				
 			}
@@ -339,11 +342,12 @@ public class SudokuBista extends JFrame implements Observer {
 	public void update(Observable o, Object arg) {
 		// TODO Auto-generated method stub
 		Sudoku s = Sudoku.getNireSudoku();
+		
 		if (arg==null) {
 			//matrize osoa eguneratu 
 	        for (int err=0; err<matrizea.length ; err++){
 	            for (int zut=0; zut<matrizea[0].length; zut++){
-	            	int i = s.getSudoku().getMatrizea()[err][zut].getPredicted();
+	            	int i = s.getTablero().getMatrizea()[err][zut].getPredicted();
 	                matrizea[err][zut].setBalioa(i); 
 	            }
 	        }

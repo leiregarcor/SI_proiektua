@@ -20,17 +20,18 @@ public class Sudoku extends Observable{
     }
 
     private void fitxeroaKargatu(){
-        SudokuCatalog.getInstance().tableroakKargatu();
-        setChanged();
-    	notifyObservers();
+        TableroCatalog.getInstance().tableroakKargatu();
+
     }
 
-    public Tablero getSudoku() {
+    public Tablero getTablero() {
         return tablero;
     }
 
-    public void setSudoku(int lvl ) {
-        this.tablero = SudokuCatalog.getInstance().getSudoku(lvl);
+    public void setTablero(int lvl ) {
+        this.tablero = TableroCatalog.getInstance().getTablero(lvl);        
+        setChanged();
+    	notifyObservers();
     }
     
     public void hautagaiakEguneratu(int pErr, int pZut, String pHautagaiak) {

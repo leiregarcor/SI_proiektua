@@ -82,10 +82,7 @@ public class HasieraPanela extends JDialog {
 						if (s.equals("1")||s.equals("2") || s.equals("3")) {
 							setVisible(false);
 							//sudokua kargatu.
-							SudokuBista.main(null);
-							Sudoku t = Sudoku.getNireSudoku();							
-							t.setSudoku(Integer.parseInt(s));
-							 
+							SudokuBista.main(null);													 
 						}
 						else {
 							Component controllingFrame = null;
