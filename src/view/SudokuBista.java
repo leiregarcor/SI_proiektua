@@ -8,6 +8,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+import model.Kasila;
 import model.Sudoku;
 
 import java.awt.GridLayout;
@@ -63,7 +64,7 @@ public class SudokuBista extends JFrame implements Observer {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		initialize();
 		setTitle("Sudoku");
-		Sudoku.getNireTablero().addObserver(this);
+		Sudoku.getNireSudoku().addObserver(this);
 	}
 	
 	private void initialize() {
@@ -338,10 +339,15 @@ public class SudokuBista extends JFrame implements Observer {
 	@Override
 	public void update(Observable o, Object arg) {
 		// TODO Auto-generated method stub
-		
+		Sudoku s = Sudoku.getNireSudoku();
 		if (arg==null) {
 			//matrize osoa eguneratu 
-			
+	        for (int err=0; err<matrizea.length ; err++){
+	            for (int zut=0; zut<matrizea[0].length; zut++){
+	            	int i = s.getSudoku().getMatrizea()[err][zut].getPredicted();
+	                matrizea[err][zut].setBalioa(i); 
+	            }
+	        }
 		}
 		else {
 			//pasatutako kasila eguneratu

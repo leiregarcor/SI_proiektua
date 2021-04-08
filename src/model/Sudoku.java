@@ -5,14 +5,14 @@ import java.util.Observable;
 public class Sudoku extends Observable{
 
     private Tablero tablero;
-    private static Sudoku nTablero = new Sudoku();
+    private static Sudoku nSudoku = new Sudoku();
 
 
     private Sudoku(){
         this.fitxeroaKargatu();
     };
-    public static Sudoku getNireTablero(){
-       return nTablero;
+    public static Sudoku getNireSudoku(){
+       return nSudoku;
     }
 
     public boolean kasillaZuzenaDa(int zutabe,int errenkada ){

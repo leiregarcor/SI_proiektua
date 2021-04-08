@@ -86,7 +86,7 @@ public class HasieraPanela extends JDialog implements Observer {
 						if (s.equals("1")||s.equals("2") || s.equals("3")) {
 							setVisible(false);
 							//sudokua kargatu.
-							Sudoku t = Sudoku.getNireTablero();
+							Sudoku t = Sudoku.getNireSudoku();							
 							t.setSudoku(Integer.parseInt(s));
 							SudokuBista.main(null); 
 						}
