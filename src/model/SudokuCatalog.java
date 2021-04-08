@@ -43,6 +43,7 @@ public class SudokuCatalog {
                     sudoku.balioakEsleitu(true,i,line);
                 }
                 for (int i = 0; i <= 8;i++){
+                	//soluzioa
                     line = reader.readLine();
                     sudoku.balioakEsleitu(false,i,line);
                 }

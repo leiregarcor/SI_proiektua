@@ -5,10 +5,12 @@ public class Tablero {
     private int lvl;
     private String izena;
     private Kasila[][] matrizea;
+    private int kasilaHutsik;
 
     public Tablero() {
         this.matrizea = new Kasila[9][9];
         this.sortuMatrizea();
+        this.kasilaHutsik = 81; //kasila kopurua
     }
     public int getLvl() {
         return lvl;
@@ -41,9 +43,18 @@ public class Tablero {
             }
         }
     }
+    
+    public boolean partidaBukatu() {
+    	//Erabiltzaileak kasila guztiak bete baditu true, bestela false bueltatu
+    	boolean ema = false;
+    	if(kasilaHutsik==0) {
+    		ema = true;
+    	}
+    	return ema;
+    }
 
     public boolean zuzenaDa(){
-        //soluzioa sartutako balioarekin konparatuko da, true balio zuzena bada, false bestela.
+        //Soluzioa sartutako balioarekin konparatuko da, true balio zuzena bada, false bestela.
          boolean ema = true;
          int zut=0,err=0;
          while (ema && err<matrizea.length){
@@ -62,6 +73,11 @@ public class Tablero {
             for (int i = 0;i<=8;i++){
                 int x = Integer.parseInt(String.valueOf(zenbakiak.charAt(i)));
                 this.matrizea[index][i].setPredicted(x);
+                if(x!=0) {
+                	this.kasilaHutsik--;
+                }
+                
+                
             }
         }else{
             for (int i = 0;i<=8;i++){

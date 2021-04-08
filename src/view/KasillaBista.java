@@ -94,7 +94,12 @@ public class KasillaBista  extends JPanel{
 	
 	public void setBalioa(int i) {
 		String s= String.valueOf(i);
-		balioa.setText(s);
+		if (i==0) {
+			balioa.setText(" ");
+		}
+		else {
+			balioa.setText(s);
+		}
 	}
 	
 	public int getKoadrante() {

@@ -7,6 +7,9 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import model.Sudoku;
+
 import java.awt.GridLayout;
 import java.awt.GridBagLayout;
 import javax.swing.JLabel;
@@ -56,8 +59,14 @@ public class SudokuBista extends JFrame implements Observer {
 	/**
 	 * Create the frame.
 	 */
-	public SudokuBista() {
+	public SudokuBista() {		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		initialize();
+		setTitle("Sudoku");
+		Sudoku.getNireTablero().addObserver(this);
+	}
+	
+	private void initialize() {
 		setBounds(100, 100, 800, 664);
 		//setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
@@ -209,6 +218,7 @@ public class SudokuBista extends JFrame implements Observer {
 		textPane.setBounds(10, 11, 109, 110);
 		panel_3.add(textPane);
 		setLocationRelativeTo(null) ;
+		
 	}
 
 	private JPanel getPanelGridLayout() {
@@ -329,5 +339,13 @@ public class SudokuBista extends JFrame implements Observer {
 	public void update(Observable o, Object arg) {
 		// TODO Auto-generated method stub
 		
+		if (arg==null) {
+			//matrize osoa eguneratu 
+			
+		}
+		else {
+			//pasatutako kasila eguneratu
+			
+		}		
 	}
 }

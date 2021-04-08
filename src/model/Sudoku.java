@@ -21,6 +21,8 @@ public class Sudoku extends Observable{
 
     private void fitxeroaKargatu(){
         SudokuCatalog.getInstance().tableroakKargatu();
+        setChanged();
+    	notifyObservers();
     }
 
     public Tablero getSudoku() {
@@ -39,6 +41,7 @@ public class Sudoku extends Observable{
     public void BalioakEguneratu(int pErr, int pZut, String pBalio) {
     	setChanged();
     	notifyObservers();
+    	//klase mezua sortu balioak aldatu ahal izateko
     	
     }
 
