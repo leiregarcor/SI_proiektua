@@ -1,8 +1,8 @@
 package model;
 
-import java.util.Observable;
 
-public class Kasila extends Observable {
+
+public class Kasila {
     private int err;
     private int zut;
     private int koadrante;
