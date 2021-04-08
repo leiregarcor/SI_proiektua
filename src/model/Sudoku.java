@@ -2,7 +2,6 @@ package model;
 
 import java.util.Observable;
 
-import com.sun.org.apache.bcel.internal.generic.NEW;
 
 public class Sudoku extends Observable{
 
@@ -12,7 +11,8 @@ public class Sudoku extends Observable{
 
     private Sudoku(){
         this.fitxeroaKargatu();
-    };
+    }
+    
     public static Sudoku getNireSudoku(){
        return nSudoku;
     }
@@ -41,12 +41,10 @@ public class Sudoku extends Observable{
     	notifyObservers();
     }
     
-    public void balioakEguneratu(int pErr, int pZut, int pBalio) {
-    	
+    public void balioakEguneratu(int pErr, int pZut, int pBalio) {    	
     	tablero.getMatrizea()[pErr][pZut].setPredicted(pBalio);
     	setChanged();
     	notifyObservers(new int[]{pErr, pZut, pBalio});
-    	//klase mezua sortu balioak aldatu ahal izateko
     	
     }
 

@@ -10,6 +10,7 @@ import javax.swing.border.EmptyBorder;
 
 import model.Kasila;
 import model.Sudoku;
+import model.Tablero;
 
 import java.awt.GridLayout;
 import java.awt.GridBagLayout;
@@ -170,6 +171,28 @@ public class SudokuBista extends JFrame implements Observer {
 					//Momentu honetan ez badu exceptionik eman badakigu erabiltzaileak dena ondo sartu duela.
 					//Balioak eguneratu
 					Sudoku.getNireSudoku().balioakEguneratu(unekoa.getErr(),unekoa.getZut(), balio);
+					Tablero t = Sudoku.getNireSudoku().getTablero();
+					if (t.partidaBukatu()) {
+						if (t.zuzenaDa()) {
+							Component controllingFrame = null;
+							JOptionPane.showMessageDialog(controllingFrame ,
+					                "Sudokua asmatu duzu! :) ",
+					                "Zorionak!",
+					                JOptionPane.PLAIN_MESSAGE);	
+						}
+						else {
+							Component controllingFrame = null;
+							JOptionPane.showMessageDialog(controllingFrame ,
+					                "Sudokua gaizki dago :( ",
+					                "Adi!",
+					                JOptionPane.ERROR_MESSAGE);								
+						}
+						System.exit(0);
+					}
+					
+					
+					//Hautagaiak eguneratu
+					//TODO
 					
 				}
 				catch(NumberFormatException n) {

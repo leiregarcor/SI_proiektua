@@ -46,10 +46,15 @@ public class Tablero {
     
     public boolean partidaBukatu() {
     	//Erabiltzaileak kasila guztiak bete baditu true, bestela false bueltatu
-    	boolean ema = false;
-    	if(kasilaHutsik==0) {
-    		ema = true;
-    	}
+    	boolean ema = true;
+        int zut=0,err=0;
+        while (ema && err<matrizea.length){
+           while (ema && zut<matrizea[0].length){
+               ema= (matrizea[err][zut].getPredicted()!=0);
+               zut++;
+           }
+           err++;
+        }
     	return ema;
     }
 
