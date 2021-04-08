@@ -168,6 +168,8 @@ public class SudokuBista extends JFrame implements Observer {
 						Integer.parseInt(x);
 					}
 					//Momentu honetan ez badu exceptionik eman badakigu erabiltzaileak dena ondo sartu duela.
+					//Balioak eguneratu
+					Sudoku.getNireSudoku().balioakEguneratu(unekoa.getErr(),unekoa.getZut(), balio);
 					
 				}
 				catch(NumberFormatException n) {
@@ -354,7 +356,8 @@ public class SudokuBista extends JFrame implements Observer {
 		}
 		else {
 			//pasatutako kasila eguneratu
-			
+			int[] info = (int[])arg;
+			 matrizea[info[0]][info[1]].setBalioa(info[2]); 
 		}		
 	}
 }
