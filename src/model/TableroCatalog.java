@@ -29,7 +29,8 @@ public class TableroCatalog {
     public  void tableroakKargatu() {
         BufferedReader reader;
         try {
-            reader = new BufferedReader(new FileReader("resources/sudoku.txt"));
+            //reader = new BufferedReader(new FileReader("resources/sudoku.txt"));
+            reader = new BufferedReader(new FileReader("resources/sudokuDemo.txt"));
             String line = reader.readLine();
             Tablero tablero;
             while (line != null) {
