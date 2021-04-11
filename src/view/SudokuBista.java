@@ -2,16 +2,12 @@ package view;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
-import java.awt.Component;
 import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
-
-import model.Kasila;
 import model.Sudoku;
 import model.Tablero;
-
 import java.awt.GridLayout;
 import java.awt.GridBagLayout;
 import javax.swing.JLabel;
@@ -20,17 +16,12 @@ import java.awt.GridBagConstraints;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import java.awt.Insets;
-
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
-import javax.swing.JComponent;
-
-import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.Observable;
 import java.util.Observer;
-import java.awt.event.ActionEvent;
 import javax.swing.JTextPane;
 
 public class SudokuBista extends JFrame implements Observer {
@@ -46,16 +37,14 @@ public class SudokuBista extends JFrame implements Observer {
 	 * Launch the application.
 	 */
 	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					SudokuBista frame = new SudokuBista();
-					frame.setVisible(true);
-					Sudoku t = Sudoku.getNireSudoku();							
-					t.setTablero(1); //HasieraPanela ez denez sprint honen parte soilik 1 zailtasunarekin frogatuko dugu.
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
+		EventQueue.invokeLater(() -> {
+			try {
+				SudokuBista frame = new SudokuBista();
+				frame.setVisible(true);
+				Sudoku t = Sudoku.getNireSudoku();
+				t.setTablero(1); //HasieraPanela ez denez sprint honen parte soilik 1 zailtasunarekin frogatuko dugu.
+			} catch (Exception e) {
+				e.printStackTrace();
 			}
 		});
 	}
@@ -63,8 +52,7 @@ public class SudokuBista extends JFrame implements Observer {
 	/**
 	 * Create the frame.
 	 */
-	public SudokuBista() {	
-
+	public SudokuBista() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		initialize();
 		setTitle("Sudoku");
@@ -91,7 +79,7 @@ public class SudokuBista extends JFrame implements Observer {
 		//panel_2.setBounds(EXIT_ON_CLOSE, ABORT, WIDTH, HEIGHT);
 		panel.add(panel_2);
 		panel_2.setLayout(new GridLayout(0, 1, 0, 0));
-		
+
 		JPanel panel_4 = new JPanel();
 		panel_2.add(panel_4);
 		GridBagLayout gbl_panel_4 = new GridBagLayout();
@@ -100,7 +88,7 @@ public class SudokuBista extends JFrame implements Observer {
 		gbl_panel_4.columnWeights = new double[]{0.0, Double.MIN_VALUE};
 		gbl_panel_4.rowWeights = new double[]{0.0, 0.0, Double.MIN_VALUE};
 		panel_4.setLayout(gbl_panel_4);
-		
+
 		JLabel lblNewLabel = new JLabel("Hautagaiak");
 		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		GridBagConstraints gbc_lblNewLabel = new GridBagConstraints();
@@ -117,7 +105,7 @@ public class SudokuBista extends JFrame implements Observer {
 		gbc_HautagaiakText.gridy = 1;
 		panel_4.add(HautagaiakText, gbc_HautagaiakText);
 		HautagaiakText.setColumns(10);
-		
+
 		JPanel panel_5 = new JPanel();
 		panel_2.add(panel_5);
 		GridBagLayout gbl_panel_5 = new GridBagLayout();
@@ -126,7 +114,7 @@ public class SudokuBista extends JFrame implements Observer {
 		gbl_panel_5.columnWeights = new double[]{0.0, Double.MIN_VALUE};
 		gbl_panel_5.rowWeights = new double[]{0.0, 0.0, Double.MIN_VALUE};
 		panel_5.setLayout(gbl_panel_5);
-		
+
 		JLabel lblNewLabel_1 = new JLabel("Balioa");
 		lblNewLabel_1.setHorizontalAlignment(SwingConstants.CENTER);
 		GridBagConstraints gbc_lblNewLabel_1 = new GridBagConstraints();
@@ -149,69 +137,63 @@ public class SudokuBista extends JFrame implements Observer {
 		panel_6.setLayout(null);
 		
 		JButton btnOK = new JButton("Ok");
-		btnOK.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				if (unekoa==null) {
-					Component controllingFrame = null;
-					JOptionPane.showMessageDialog(controllingFrame ,
-			                "Ez duzu kasilarik aukeratu. Aukeratu kasila bat.",
-			                "Adi!",
-			                JOptionPane.ERROR_MESSAGE);	
-					HautagaiakText.setText(" ");
-					BalioaText.setText(" ");
-				}
-				try {//egokiena ereduari pasatu zer sartu den eta ereduak ikustea ea egokiak diren balioak eta update-ak esango dio erabiltzaileari ea balioak egokiak diren 
-					int balio = Integer.parseInt(BalioaText.getText());
-					String s = HautagaiakText.getText();
-					String[] arrayS = s.split(" ");
-					for(String x: arrayS) {
-						//Begiratuko dugu exceptionen bat botatzen duen.
-						Integer.parseInt(x);
-					}
-					//Momentu honetan ez badu exceptionik eman badakigu erabiltzaileak dena ondo sartu duela.
-					//Balioak eguneratu
-					Sudoku.getNireSudoku().balioakEguneratu(unekoa.getErr(),unekoa.getZut(), balio);
-					Tablero t = Sudoku.getNireSudoku().getTablero();
-					if (t.partidaBukatu()) {
-						if (t.zuzenaDa()) {
-							Component controllingFrame = null;
-							JOptionPane.showMessageDialog(controllingFrame ,
-					                "Sudokua asmatu duzu! :) ",
-					                "Zorionak!",
-					                JOptionPane.PLAIN_MESSAGE);	
-						}
-						else {
-							Component controllingFrame = null;
-							JOptionPane.showMessageDialog(controllingFrame ,
-					                "Sudokua gaizki dago :( ",
-					                "Adi!",
-					                JOptionPane.ERROR_MESSAGE);								
-						}
-						System.exit(0);
-					}
-					
-					
-					//Hautagaiak eguneratu
-					//TODO
-					
-				}
-				catch(NumberFormatException n) {
-					Component controllingFrame = null;
-					JOptionPane.showMessageDialog(controllingFrame ,
-			                "Sartu duzun Balioa okerra da. Sartu zenbaki bat",
-			                "Errore mezua",
-			                JOptionPane.ERROR_MESSAGE);
-					
-					if(unekoa!=null) {
-						unekoa.desaukeratu();
-					}
-					unekoa= null;
-					HautagaiakText.setText(" ");
-					BalioaText.setText(" ");
-									
-				}
-				
+		btnOK.addActionListener(e -> {
+			if (unekoa==null) {
+				JOptionPane.showMessageDialog(null ,
+						"Ez duzu kasilarik aukeratu. Aukeratu kasila bat.",
+						"Adi!",
+						JOptionPane.ERROR_MESSAGE);
+				HautagaiakText.setText(" ");
+				BalioaText.setText(" ");
 			}
+			try {//egokiena ereduari pasatu zer sartu den eta ereduak ikustea ea egokiak diren balioak eta update-ak esango dio erabiltzaileari ea balioak egokiak diren
+				int balio = Integer.parseInt(BalioaText.getText());
+				String s = HautagaiakText.getText();
+				String[] arrayS = s.split(" ");
+				for(String x: arrayS) {
+					//Begiratuko dugu exceptionen bat botatzen duen.
+					Integer.parseInt(x);
+				}
+				//Momentu honetan ez badu exceptionik eman badakigu erabiltzaileak dena ondo sartu duela.
+				//Balioak eguneratu
+				Sudoku.getNireSudoku().balioakEguneratu(unekoa.getErr(),unekoa.getZut(), balio);
+				Tablero t = Sudoku.getNireSudoku().getTablero();
+				if (t.partidaBukatu()) {
+					if (t.zuzenaDa()) {
+						JOptionPane.showMessageDialog(null ,
+								"Sudokua asmatu duzu! :) ",
+								"Zorionak!",
+								JOptionPane.PLAIN_MESSAGE);
+					}
+					else {
+						JOptionPane.showMessageDialog(null ,
+								"Sudokua gaizki dago :( ",
+								"Adi!",
+								JOptionPane.ERROR_MESSAGE);
+					}
+					System.exit(0);
+				}
+
+
+				//Hautagaiak eguneratu
+				//TODO
+
+			}
+			catch(NumberFormatException n) {
+				JOptionPane.showMessageDialog(null ,
+						"Sartu duzun Balioa okerra da. Sartu zenbaki bat",
+						"Errore mezua",
+						JOptionPane.ERROR_MESSAGE);
+
+				if(unekoa!=null) {
+					unekoa.desaukeratu();
+				}
+				unekoa = null;
+				HautagaiakText.setText(" ");
+				BalioaText.setText(" ");
+
+			}
+
 		});
 		btnOK.setBounds(10, 11, 103, 21);
 		btnOK.setHorizontalAlignment(SwingConstants.CENTER);
@@ -219,9 +201,7 @@ public class SudokuBista extends JFrame implements Observer {
 		panel_6.add(btnOK);
 		
 		JButton btnLaguntza = new JButton("Laguntza");
-		btnLaguntza.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
+		btnLaguntza.addActionListener(e -> {
 		});
 		btnLaguntza.setVerticalAlignment(SwingConstants.CENTER);
 		btnLaguntza.setHorizontalAlignment(SwingConstants.CENTER);
@@ -235,11 +215,7 @@ public class SudokuBista extends JFrame implements Observer {
 		btnExit.setBounds(34, 144, 66, 23);
 		btnExit.setHorizontalAlignment(SwingConstants.CENTER);
 		btnExit.setVerticalAlignment(SwingConstants.CENTER);
-		btnExit.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				System.exit(0);
-			}
-		});
+		btnExit.addActionListener(e -> System.exit(0));
 		panel_3.setLayout(null);
 		panel_3.add(btnExit);
 		
@@ -293,16 +269,15 @@ public class SudokuBista extends JFrame implements Observer {
 							if(unekoa!=null) {
 								unekoa.desaukeratu();
 							}
-							KasillaBista p= k;
 							//JComponent p = (JComponent) e.getSource();
-							p.aukeratu();
-							unekoa=p;
-							HautagaiakText.setText(p.getHautagaiak());
-							if(p.getBalioa()==0) {
+							k.aukeratu();
+							unekoa= k;
+							HautagaiakText.setText(k.getHautagaiak());
+							if(k.getBalioa()==0) {
 								BalioaText.setText("");
 							}
 							else {
-								BalioaText.setText(String.valueOf(p.getBalioa()));
+								BalioaText.setText(String.valueOf(k.getBalioa()));
 							}
 						}
 						

@@ -1,3 +1,4 @@
+
 package model;
 
 
@@ -18,7 +19,7 @@ public class Kasila {
 
     public boolean zuzenaDa(){
         // Kasila bateko soluzioa sartutako balioarekin konparatuko da, true balio zuzena bada, false bestela.
-        return this.actual==this.predicted;
+        return this.actual == this.predicted;
     }
 
     public int getActual() {

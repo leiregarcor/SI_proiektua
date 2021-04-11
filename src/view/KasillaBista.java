@@ -4,15 +4,8 @@ import java.awt.Color;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
-
 import javax.swing.BorderFactory;
 import javax.swing.JPanel;
-
-import model.Kasila;
-
-import javax.swing.JButton;
 import javax.swing.JLabel;
 import java.awt.Font;
 
@@ -71,38 +64,33 @@ public class KasillaBista  extends JPanel{
 	}
 	
 	public String getHautagaiak() {
-		if(hautagaiak.getText()=="") {
+		if(hautagaiak.getText().equals("")) {
 			return " ";
 		}
-		else{
-			return  hautagaiak.getText();
-		}
+		return  hautagaiak.getText();
 	}
 	
 	public int getBalioa() {
-		if(balioa.getText()==" ") {
+		if(balioa.getText().equals(" ")) {
 			return 0;
 		}
-		else{
 			return  Integer.parseInt(balioa.getText());
-		}
 	}
+
 	
 	public void setHautagaiak(String s) {
-		if(s=="") {
+		if(s.equals("")) {
 			hautagaiak.setText("");
-		}
-		else {
+		}else{
 			hautagaiak.setText(s);
 		}
 	}
 	
 	public void setBalioa(int i) {
 		String s= String.valueOf(i);
-		if (i==0) {
+		if (i == 0) {
 			balioa.setText(" ");
-		}
-		else {
+		}else{
 			balioa.setText(s);
 		}
 	}

@@ -1,12 +1,9 @@
 package view;
 
-import java.awt.Component;
 import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
-
-import model.Sudoku;
 
 import javax.swing.JTextField;
 import javax.swing.JLabel;
@@ -45,7 +42,7 @@ public class HasieraPanela extends JDialog {
 		getContentPane().setLayout(null);
 		
 		setLocationRelativeTo(null) ;
-		
+
 		contentPanel.setBounds(0, 0, 434, 217);
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		getContentPane().add(contentPanel);		
@@ -76,25 +73,22 @@ public class HasieraPanela extends JDialog {
 			buttonPane.setLayout(null);
 			{
 				JButton okButton = new JButton("OK");
-				okButton.addActionListener(new ActionListener() {
-					public void actionPerformed(ActionEvent e) {
-						String s = levelField.getText();
-						if (s.equals("1")||s.equals("2") || s.equals("3")) {
-							setVisible(false);
-							//sudokua kargatu.
-							SudokuBista.main(null);													 
-						}
-						else {
-							Component controllingFrame = null;
-							JOptionPane.showMessageDialog(controllingFrame,
-					                "Zailtasun maila ez da egokia. Saiatu berriro",
-					                "Errore mezua",
-					                JOptionPane.ERROR_MESSAGE);
-							levelField.setText(null);
-							levelField.requestFocus();
-						}
-						
+				okButton.addActionListener(e -> {
+					String s = levelField.getText();
+					if (s.equals("1")||s.equals("2") || s.equals("3")) {
+						setVisible(false);
+						//sudokua kargatu.
+						SudokuBista.main(null);
 					}
+					else {
+						JOptionPane.showMessageDialog(null,
+								"Zailtasun maila ez da egokia. Saiatu berriro",
+								"Errore mezua",
+								JOptionPane.ERROR_MESSAGE);
+						levelField.setText(null);
+						levelField.requestFocus();
+					}
+
 				});
 				okButton.setBounds(132, 5, 65, 23);
 				okButton.setActionCommand("OK");
@@ -103,11 +97,9 @@ public class HasieraPanela extends JDialog {
 			}
 			{
 				JButton cancelButton = new JButton("Cancel");
-				cancelButton.addActionListener(new ActionListener() {
-					public void actionPerformed(ActionEvent e) {
-						levelField.setText(null);
-						textField.setText(null);
-					}
+				cancelButton.addActionListener(e -> {
+					levelField.setText(null);
+					textField.setText(null);
 				});
 				cancelButton.setBounds(228, 5, 84, 23);
 				cancelButton.setActionCommand("Cancel");

@@ -50,7 +50,7 @@ public class Tablero {
         int zut=0,err=0;
         while (ema && err<matrizea.length){
            while (ema && zut<matrizea[0].length){
-               ema= (matrizea[err][zut].getPredicted()!=0);
+               ema = (matrizea[err][zut].getPredicted()!=0);
                zut++;
            }
            err++;
@@ -81,8 +81,6 @@ public class Tablero {
                 if(x!=0) {
                 	this.kasilaHutsik--;
                 }
-                
-                
             }
         }else{
             for (int i = 0;i<=8;i++){
@@ -92,5 +90,4 @@ public class Tablero {
 
         }
     }
- 
 }
