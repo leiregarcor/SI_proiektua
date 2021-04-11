@@ -6,8 +6,12 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 public class TableroCatalog {
+	
+	private static TableroCatalog nTableroCatalog = null;
 	private static ArrayList<Tablero> tableroak = new ArrayList<>();
-    private static TableroCatalog nTableroCatalog = null;
+   
+    
+    private TableroCatalog(){}
     
     public static TableroCatalog getInstance(){
         if(nTableroCatalog == null){
@@ -17,14 +21,11 @@ public class TableroCatalog {
         }
 
     
-
-    private TableroCatalog(){}
-
-    public  void main(String[] args){
+  /*  public  void main(String[] args){
         tableroakKargatu();
         getTablero(1);
     }
-    
+   */    
     
     public  void tableroakKargatu() {
         BufferedReader reader;

@@ -70,7 +70,7 @@ public class Kasila {
         this.aukerak = aukerak;
     }
 
-    public static void main(String[] args) {
+   /* public static void main(String[] args) {
         Kasila k = new Kasila(1,1);
         k.setPredicted(1);
         k.setActual(1);
@@ -78,5 +78,6 @@ public class Kasila {
         k.setPredicted(2);
         System.out.println(k.zuzenaDa());
     }
+    */
 
 }
