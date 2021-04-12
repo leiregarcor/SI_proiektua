@@ -348,7 +348,7 @@ public class SudokuBista extends JFrame implements Observer {
 	        for (int err=0; err<matrizea.length ; err++){
 	            for (int zut=0; zut<matrizea[0].length; zut++){
 	            	int i = s.getTablero().getMatrizea()[err][zut].getPredicted();
-	                matrizea[err][zut].setBalioa(i); 
+	                matrizea[err][zut].setBalioaKargatu(i);
 	            }
 	        }
 		}
