@@ -49,6 +49,7 @@ public class Tablero {
     	boolean ema = true;
         int zut=0,err=0;
         while (ema && err<matrizea.length){
+            zut=0;
            while (ema && zut<matrizea[0].length){
                ema = (matrizea[err][zut].getPredicted()!=0);
                zut++;
@@ -63,6 +64,7 @@ public class Tablero {
          boolean ema = true;
          int zut=0,err=0;
          while (ema && err<matrizea.length){
+             zut=0;
             while (ema && zut<matrizea[0].length){
                 ema=matrizea[err][zut].zuzenaDa();
                 zut++;
