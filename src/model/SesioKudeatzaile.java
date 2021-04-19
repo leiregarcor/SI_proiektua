@@ -13,13 +13,15 @@ public class SesioKudeatzaile {
         return sk;
     }
 
-    public void setDiff(int lvl){
+    public void setLvl(int lvl) {
         this.lvl = lvl;
     }
-    public int getLvl(){
-        return this.lvl;
+
+    public String getIzena() {
+        return izena;
     }
-    
-    
-    
+
+    public void setIzena(String izena) {
+        this.izena = izena;
+    }
 }
