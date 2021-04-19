@@ -4,10 +4,12 @@ public class SesioKudeatzaile {
     private static SesioKudeatzaile sk = null;
     private int lvl;
     private String izena;
-    private SesioKudeatzaile(){}
+
+    private SesioKudeatzaile() {
+    }
 
     public static SesioKudeatzaile getInstance() {
-        if (sk == null){
+        if (sk == null) {
             sk = new SesioKudeatzaile();
         }
         return sk;

@@ -2,26 +2,24 @@ package model;
 
 import java.util.Observable;
 
-
-public class Sudoku extends Observable{
+public class Sudoku extends Observable {
 
     private Tablero tablero;
     private static Sudoku nSudoku = new Sudoku();
 
-
-    private Sudoku(){
+    private Sudoku() {
         this.fitxeroaKargatu();
     }
-    
-    public static Sudoku getNireSudoku(){
-       return nSudoku;
+
+    public static Sudoku getNireSudoku() {
+        return nSudoku;
     }
 
-    public boolean kasillaZuzenaDa(int zutabe,int errenkada ){
+    public boolean kasillaZuzenaDa(int zutabe, int errenkada) {
         return tablero.getMatrizea()[zutabe][errenkada].zuzenaDa();
     }
 
-    private void fitxeroaKargatu(){
+    private void fitxeroaKargatu() {
         TableroCatalog.getInstance().tableroakKargatu();
 
     }
@@ -30,22 +28,22 @@ public class Sudoku extends Observable{
         return tablero;
     }
 
-    public void setTablero(int lvl ) {
-        this.tablero = TableroCatalog.getInstance().getTablero(lvl);        
+    public void setTablero(int lvl) {
+        this.tablero = TableroCatalog.getInstance().getTablero(lvl);
         setChanged();
-    	notifyObservers();
+        notifyObservers();
     }
-    
+
     public void hautagaiakEguneratu(int pErr, int pZut, String pHautagaiak) {
-    	setChanged();
-    	notifyObservers();
+        setChanged();
+        notifyObservers();
     }
-    
-    public void balioakEguneratu(int pErr, int pZut, int pBalio) {    	
-    	tablero.getMatrizea()[pErr][pZut].setPredicted(pBalio);
-    	setChanged();
-    	notifyObservers(new int[]{pErr, pZut, pBalio});
-    	
+
+    public void balioakEguneratu(int pErr, int pZut, int pBalio) {
+        tablero.getMatrizea()[pErr][pZut].setPredicted(pBalio);
+        setChanged();
+        notifyObservers(new int[] { pErr, pZut, pBalio });
+
     }
 
 }

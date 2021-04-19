@@ -9,33 +9,32 @@ import javax.swing.JPanel;
 import javax.swing.JLabel;
 import java.awt.Font;
 
-
-public class KasillaBista  extends JPanel{
-	//Poner labels como atributos y setters y getters para usarlo desde mousepressed
+public class KasillaBista extends JPanel {
+	// Poner labels como atributos y setters y getters para usarlo desde
+	// mousepressed
 	private JLabel balioa;
 	private JLabel hautagaiak;
 	private int Koadrante;
-    private int err;
-    private int zut;
+	private int err;
+	private int zut;
 
-    
 	public KasillaBista(int k, int pErr, int pZut) {
 		super();
 		initialize();
-		Koadrante=k;
-		err=pErr;
-		zut= pZut;
+		Koadrante = k;
+		err = pErr;
+		zut = pZut;
 	}
-	
+
 	private void initialize() {
 		this.setBorder(BorderFactory.createLineBorder(Color.black, 1));
 		GridBagLayout panel = new GridBagLayout();
-		panel.columnWidths = new int[] {0};
-		panel.rowHeights = new int[] {0, 0};
-		panel.columnWeights = new double[]{1.0};
-		panel.rowWeights = new double[]{Double.MIN_VALUE,0.0};
+		panel.columnWidths = new int[] { 0 };
+		panel.rowHeights = new int[] { 0, 0 };
+		panel.columnWeights = new double[] { 1.0 };
+		panel.rowWeights = new double[] { Double.MIN_VALUE, 0.0 };
 		this.setLayout(panel);
-		
+
 		hautagaiak = new JLabel();
 		hautagaiak.setForeground(Color.RED);
 		GridBagConstraints gbc_hautagaiak = new GridBagConstraints();
@@ -44,7 +43,7 @@ public class KasillaBista  extends JPanel{
 		gbc_hautagaiak.gridx = 0;
 		gbc_hautagaiak.gridy = 0;
 		this.add(hautagaiak, gbc_hautagaiak);
-		
+
 		balioa = new JLabel();
 		balioa.setFont(new Font("Tahoma", Font.PLAIN, 30));
 		GridBagConstraints gbc_balioa = new GridBagConstraints();
@@ -52,70 +51,68 @@ public class KasillaBista  extends JPanel{
 		gbc_balioa.gridx = 0;
 		gbc_balioa.gridy = 1;
 		add(balioa, gbc_balioa);
-		
+
 	}
-	
+
 	public void aukeratu() {
 		setBorder(BorderFactory.createLineBorder(Color.black, 3));
 	}
-	
+
 	public void desaukeratu() {
 		setBorder(BorderFactory.createLineBorder(Color.black, 1));
 	}
-	
+
 	public String getHautagaiak() {
-		if(hautagaiak.getText().equals("")) {
+		if (hautagaiak.getText().equals("")) {
 			return " ";
 		}
-		return  hautagaiak.getText();
-	}
-	
-	public int getBalioa() {
-		if(balioa.getText().equals(" ")) {
-			return 0;
-		}
-			return  Integer.parseInt(balioa.getText());
+		return hautagaiak.getText();
 	}
 
-	
+	public int getBalioa() {
+		if (balioa.getText().equals(" ")) {
+			return 0;
+		}
+		return Integer.parseInt(balioa.getText());
+	}
+
 	public void setHautagaiak(String s) {
-		if(s.equals("")) {
+		if (s.equals("")) {
 			hautagaiak.setText("");
-		}else{
+		} else {
 			hautagaiak.setText(s);
 		}
 	}
-	
+
 	public void setBalioa(int i) {
-		String s= String.valueOf(i);
+		String s = String.valueOf(i);
 		if (i == 0) {
 			balioa.setText(" ");
-		}else{
+		} else {
 			balioa.setText(s);
 		}
 	}
 
 	public void setBalioaKargatu(int i) {
-		String s= String.valueOf(i);
+		String s = String.valueOf(i);
 		if (i == 0) {
 			balioa.setText(" ");
-		}else{
+		} else {
 			balioa.setText(s);
 			balioa.setForeground(Color.BLUE);
 		}
 	}
-	
+
 	public int getKoadrante() {
 		return Koadrante;
 	}
-	
+
 	public int getErr() {
 		return err;
 	}
-	
+
 	public int getZut() {
 		return zut;
 	}
-	
-    
+
 }

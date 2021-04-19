@@ -6,14 +6,13 @@ public class ProgramaNagusia {
 		/**
 		 * Kaixo, ongi etorri <3
 		 *
-		 * Hasiera Panela egikaritzean erabiltzailearen izena sartu eta 1,
-		 * 2 edo 3 balioak SudokuBista agertzeko, beste zenbakiren bat
-		 * sartzerakoan errore mezua agertuko da eta berriro saiatzeko
-		 * eskaten zaio erabiltzaileari.
+		 * Hasiera Panela egikaritzean erabiltzailearen izena sartu eta 1, 2 edo 3
+		 * balioak SudokuBista agertzeko, beste zenbakiren bat sartzerakoan errore mezua
+		 * agertuko da eta berriro saiatzeko eskaten zaio erabiltzaileari.
 		 *
-		 * */
+		 */
 		SudokuBista.main(null);
-		
+
 	}
 
 }

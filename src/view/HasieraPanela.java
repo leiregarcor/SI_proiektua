@@ -37,31 +37,31 @@ public class HasieraPanela extends JDialog {
 	 */
 	public HasieraPanela() {
 		setTitle("Hasiera Panela");
-		
+
 		setBounds(100, 100, 450, 300);
 		getContentPane().setLayout(null);
-		
-		setLocationRelativeTo(null) ;
+
+		setLocationRelativeTo(null);
 
 		contentPanel.setBounds(0, 0, 434, 217);
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
-		getContentPane().add(contentPanel);		
+		getContentPane().add(contentPanel);
 		contentPanel.setLayout(null);
-		
+
 		levelField = new JTextField();
 		levelField.setBounds(165, 130, 147, 20);
 		contentPanel.add(levelField);
-		
+
 		textField = new JTextField();
 		textField.setBounds(165, 88, 147, 20);
 		contentPanel.add(textField);
 		textField.setColumns(10);
-		
+
 		JLabel lblNewLabel = new JLabel("Izena");
 		lblNewLabel.setFont(new Font("Tahoma", Font.BOLD, 11));
 		lblNewLabel.setBounds(123, 91, 32, 14);
 		contentPanel.add(lblNewLabel);
-		
+
 		JLabel lblNewLabel_1 = new JLabel("Zailtasuna");
 		lblNewLabel_1.setFont(new Font("Tahoma", Font.BOLD, 11));
 		lblNewLabel_1.setBounds(96, 133, 59, 14);
@@ -75,16 +75,13 @@ public class HasieraPanela extends JDialog {
 				JButton okButton = new JButton("OK");
 				okButton.addActionListener(e -> {
 					String s = levelField.getText();
-					if (s.equals("1")||s.equals("2") || s.equals("3")) {
+					if (s.equals("1") || s.equals("2") || s.equals("3")) {
 						setVisible(false);
-						//sudokua kargatu.
+						// sudokua kargatu.
 						SudokuBista.main(null);
-					}
-					else {
-						JOptionPane.showMessageDialog(null,
-								"Zailtasun maila ez da egokia. Saiatu berriro",
-								"Errore mezua",
-								JOptionPane.ERROR_MESSAGE);
+					} else {
+						JOptionPane.showMessageDialog(null, "Zailtasun maila ez da egokia. Saiatu berriro",
+								"Errore mezua", JOptionPane.ERROR_MESSAGE);
 						levelField.setText(null);
 						levelField.requestFocus();
 					}

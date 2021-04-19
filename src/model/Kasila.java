@@ -4,15 +4,13 @@ public abstract class Kasila {
     protected int err;
     protected int zut;
     protected int koadrante;
-    protected int soluzio; //sol
+    protected int soluzio; // sol
 
     public Kasila(int err, int zut) {
         this.err = err;
         this.zut = zut;
-        this.koadrante = (err/3)*(zut/3);
+        this.koadrante = (err / 3) * (zut / 3);
     }
-
-
 
     public int getSoluzio() {
         return soluzio;
@@ -21,9 +19,6 @@ public abstract class Kasila {
     public void setSoluzio(int soluzio) {
         this.soluzio = soluzio;
     }
-
-
-
 
     public int getZut() {
         return zut;
@@ -49,14 +44,14 @@ public abstract class Kasila {
         this.koadrante = koadrante;
     }
 
-//
-//    public static void main(String[] args) {
-//        Kasila k = new Kasila(1,1);
-//        k.setPredicted(1);
-//        k.setSoluzio(1);
-//        System.out.println(k.zuzenaDa());
-//        k.setPredicted(2);
-//        System.out.println(k.zuzenaDa());
-//    }
+    //
+    // public static void main(String[] args) {
+    // Kasila k = new Kasila(1,1);
+    // k.setPredicted(1);
+    // k.setSoluzio(1);
+    // System.out.println(k.zuzenaDa());
+    // k.setPredicted(2);
+    // System.out.println(k.zuzenaDa());
+    // }
 
 }
