@@ -1,3 +1,5 @@
+package model;
+
 public class RawTablero {
     private int[][] soluzioa;
     private int[][] bista;

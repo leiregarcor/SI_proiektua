@@ -1,15 +1,10 @@
-
 package model;
 
-
-
-public class Kasila {
-    private int err;
-    private int zut;
-    private int koadrante;
-    private int actual; //sol
-    private int predicted; //erabiltzaileak sartutakoa
-    private String aukerak;
+public abstract class Kasila {
+    protected int err;
+    protected int zut;
+    protected int koadrante;
+    protected int soluzio; //sol
 
     public Kasila(int err, int zut) {
         this.err = err;
@@ -17,26 +12,18 @@ public class Kasila {
         this.koadrante = (err/3)*(zut/3);
     }
 
-    public boolean zuzenaDa(){
-        // Kasila bateko soluzioa sartutako balioarekin konparatuko da, true balio zuzena bada, false bestela.
-        return this.actual == this.predicted;
+
+
+    public int getSoluzio() {
+        return soluzio;
     }
 
-    public int getActual() {
-        return actual;
+    public void setSoluzio(int soluzio) {
+        this.soluzio = soluzio;
     }
 
-    public void setActual(int actual) {
-        this.actual = actual;
-    }
 
-    public int getPredicted() {
-        return predicted;
-    }
 
-    public void setPredicted(int predicted) {
-        this.predicted = predicted;
-    }
 
     public int getZut() {
         return zut;
@@ -62,22 +49,14 @@ public class Kasila {
         this.koadrante = koadrante;
     }
 
-    public String getAukerak() {
-        return aukerak;
-    }
-
-    public void setAukerak(String aukerak) {
-        this.aukerak = aukerak;
-    }
-
-   /* public static void main(String[] args) {
-        Kasila k = new Kasila(1,1);
-        k.setPredicted(1);
-        k.setActual(1);
-        System.out.println(k.zuzenaDa());
-        k.setPredicted(2);
-        System.out.println(k.zuzenaDa());
-    }
-    */
+//
+//    public static void main(String[] args) {
+//        Kasila k = new Kasila(1,1);
+//        k.setPredicted(1);
+//        k.setSoluzio(1);
+//        System.out.println(k.zuzenaDa());
+//        k.setPredicted(2);
+//        System.out.println(k.zuzenaDa());
+//    }
 
 }

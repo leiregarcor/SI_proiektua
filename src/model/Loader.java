@@ -18,6 +18,7 @@ public class Loader {
             return loader;
         }
 
+    
     public ArrayList<Tablero> tableroakKargatu() {
         BufferedReader reader;
         try {
