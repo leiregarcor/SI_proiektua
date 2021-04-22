@@ -6,6 +6,8 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import model.SesioKudeatzaile;
 import model.Sudoku;
 import model.Tablero;
 import java.awt.GridLayout;
@@ -41,8 +43,7 @@ public class SudokuBista extends JFrame implements Observer {
 			try {
 				SudokuBista frame = new SudokuBista();
 				frame.setVisible(true);
-				Sudoku t = Sudoku.getNireSudoku();
-				t.setTablero(1); // HasieraPanela ez denez sprint honen parte soilik 1 zailtasunarekin frogatuko
+				SesioKudeatzaile.getInstance().tableroaKargatu();// HasieraPanela ez denez sprint honen parte soilik 1 zailtasunarekin frogatuko
 									// dugu.
 			} catch (Exception e) {
 				e.printStackTrace();
@@ -157,17 +158,19 @@ public class SudokuBista extends JFrame implements Observer {
 				// Momentu honetan ez badu exceptionik eman badakigu erabiltzaileak dena ondo
 				// sartu duela.
 				// Balioak eguneratu
-				Sudoku.getNireSudoku().balioakEguneratu(unekoa.getErr(), unekoa.getZut(), balio);
+				Sudoku.getNireSudoku().kasilaEguneratu(unekoa.getErr(), unekoa.getZut(), balio, s);
 				Tablero t = Sudoku.getNireSudoku().getTablero();
 				if (t.partidaBukatu()) {
 					if (t.zuzenaDa()) {
 						JOptionPane.showMessageDialog(null, "Sudokua asmatu duzu! :) ", "Zorionak!",
 								JOptionPane.PLAIN_MESSAGE);
+						setVisible(false);
+						SesioKudeatzaile.getInstance().partidaBukatu();
 					} else {
 						JOptionPane.showMessageDialog(null, "Sudokua gaizki dago :( ", "Adi!",
 								JOptionPane.ERROR_MESSAGE);
+						System.exit(0);
 					}
-					System.exit(0);
 				}
 
 				// Hautagaiak eguneratu
@@ -334,7 +337,7 @@ public class SudokuBista extends JFrame implements Observer {
 			// matrize osoa eguneratu
 			for (int err = 0; err < matrizea.length; err++) {
 				for (int zut = 0; zut < matrizea[0].length; zut++) {
-					int i = s.getTablero().getMatrizea()[err][zut].getPredicted();
+					int i = s.getTablero().getMatrizea()[err][zut].getBista();
 					matrizea[err][zut].setBalioaKargatu(i);
 				}
 			}
@@ -342,6 +345,7 @@ public class SudokuBista extends JFrame implements Observer {
 			// pasatutako kasila eguneratu
 			int[] info = (int[]) arg;
 			matrizea[info[0]][info[1]].setBalioa(info[2]);
+			//matrizea[info[0]][info[1]].setHautagaiak(info[3]);
 		}
 	}
 }

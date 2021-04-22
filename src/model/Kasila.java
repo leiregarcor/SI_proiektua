@@ -4,7 +4,8 @@ public abstract class Kasila {
     protected int err;
     protected int zut;
     protected int koadrante;
-    protected int soluzio; // sol
+    protected int bista; // bistaratuko dena
+    protected int soluzio; // erabiltzaileak sartutakoa
 
     public Kasila(int err, int zut) {
         this.err = err;
@@ -12,12 +13,12 @@ public abstract class Kasila {
         this.koadrante = (err / 3) * (zut / 3);
     }
 
-    public int getSoluzio() {
-        return soluzio;
+    public int getBista() {
+        return bista;
     }
 
-    public void setSoluzio(int soluzio) {
-        this.soluzio = soluzio;
+    public void setBista(int bista) {
+        this.bista = bista;
     }
 
     public int getZut() {
@@ -42,6 +43,14 @@ public abstract class Kasila {
 
     public void setKoadrante(int koadrante) {
         this.koadrante = koadrante;
+    }
+
+    public int getSoluzio() {
+        return soluzio;
+    }
+
+    public void setSoluzio(int soluzio) {
+        this.soluzio = soluzio;
     }
 
     //

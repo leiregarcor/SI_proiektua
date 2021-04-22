@@ -9,7 +9,6 @@ public class Tablero {
 
     public Tablero() {
         this.matrizea = new Kasila[9][9];
-        this.sortuMatrizea();
         this.kasilaHutsik = 81; // kasila kopurua
     }
 
@@ -37,10 +36,22 @@ public class Tablero {
         this.matrizea = matrizea;
     }
 
-    private void sortuMatrizea() {
-        for (int err = 0; err < matrizea.length; err++) {
-            for (int zut = 0; zut < matrizea[0].length; zut++) {
-                matrizea[err][zut] = new Kasila(err, zut);
+    public void tableroaKargatu(int lvl){
+        int bista[][]=TableroCatalog.getInstance().getTablero(lvl).getBista();
+        int soluzioa[][]=TableroCatalog.getInstance().getTablero(lvl).getSoluzioa();
+        for (int err=0; err< matrizea.length; err++) {
+            for (int zut=0; zut< matrizea[0].length;zut++){
+                if (bista[err][zut]==0){
+                    matrizea[err][zut] = new KasilaAldakorra(err, zut);
+                    matrizea[err][zut].setBista(bista[err][zut]);
+                    matrizea[err][zut].setSoluzio(soluzioa[err][zut]);
+                }
+                else{
+                    matrizea[err][zut]= new KasilaAldaezina(err, zut);
+                    matrizea[err][zut].setBista(bista[err][zut]);
+                    matrizea[err][zut].setSoluzio(soluzioa[err][zut]);
+                    kasilaHutsik--;
+                }
             }
         }
     }
@@ -52,7 +63,7 @@ public class Tablero {
         while (ema && err < matrizea.length) {
             zut = 0;
             while (ema && zut < matrizea[0].length) {
-                ema = (matrizea[err][zut].getPredicted() != 0);
+                ema = (matrizea[err][zut].getBista() != 0);
                 zut++;
             }
             err++;
@@ -68,31 +79,13 @@ public class Tablero {
         while (ema && err < matrizea.length) {
             zut = 0;
             while (ema && zut < matrizea[0].length) {
-                ema = matrizea[err][zut].zuzenaDa();
+                if (matrizea[err][zut] instanceof KasilaAldakorra){
+                    ema = ((KasilaAldakorra) matrizea[err][zut]).zuzenaDa();
+                }
                 zut++;
             }
             err++;
         }
         return ema;
-    }
-
-    public void balioakEsleitu(boolean m, int index, String zenbakiak) {
-        // Index errenkada zenbakia markatzen du, zenbakiak, bete beharreko zenbakiak.
-        // Boolearrak ze matrizean esleitu behar dugun markatuko du.
-        if (m) {
-            for (int i = 0; i <= 8; i++) {
-                int x = Integer.parseInt(String.valueOf(zenbakiak.charAt(i)));
-                this.matrizea[index][i].setPredicted(x);
-                if (x != 0) {
-                    this.kasilaHutsik--;
-                }
-            }
-        } else {
-            for (int i = 0; i <= 8; i++) {
-                int x = Integer.parseInt(String.valueOf(zenbakiak.charAt(i)));
-                this.matrizea[index][i].setActual(x);
-            }
-
-        }
     }
 }
