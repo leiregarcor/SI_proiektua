@@ -27,8 +27,11 @@ public class Sudoku extends Observable {
         if(tablero.getMatrizea()[pErr][pZut] instanceof KasilaAldakorra){
             tablero.getMatrizea()[pErr][pZut].setBista(pBalio);
             ((KasilaAldakorra) tablero.getMatrizea()[pErr][pZut]).setAukerak(pHautagaiak);
+            Mezua mezu= new Mezua();
+            mezu.setHautagaiak(pHautagaiak);
+            mezu.setInfo(new int[] { pErr, pZut, pBalio});
             setChanged();
-            notifyObservers(new int[] { pErr, pZut, pBalio});
+            notifyObservers(mezu);
         }
     }
 

@@ -7,6 +7,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+import model.Mezua;
 import model.SesioKudeatzaile;
 import model.Sudoku;
 import model.Tablero;
@@ -342,10 +343,12 @@ public class SudokuBista extends JFrame implements Observer {
 				}
 			}
 		} else {
+			Mezua mezu= (Mezua) arg;
 			// pasatutako kasila eguneratu
-			int[] info = (int[]) arg;
+			int[] info = mezu.getInfo();
+			String hautagaiak= mezu.getHautagaiak();
 			matrizea[info[0]][info[1]].setBalioa(info[2]);
-			//matrizea[info[0]][info[1]].setHautagaiak(info[3]);
+			matrizea[info[0]][info[1]].setHautagaiak(hautagaiak);
 		}
 	}
 }
