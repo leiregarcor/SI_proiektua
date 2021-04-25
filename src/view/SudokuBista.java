@@ -44,8 +44,7 @@ public class SudokuBista extends JFrame implements Observer {
 			try {
 				SudokuBista frame = new SudokuBista();
 				frame.setVisible(true);
-				SesioKudeatzaile.getInstance().tableroaKargatu();// HasieraPanela ez denez sprint honen parte soilik 1 zailtasunarekin frogatuko
-									// dugu.
+				SesioKudeatzaile.getInstance().tableroaKargatu();
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
@@ -150,11 +149,18 @@ public class SudokuBista extends JFrame implements Observer {
 			try {// egokiena ereduari pasatu zer sartu den eta ereduak ikustea ea egokiak diren
 					// balioak eta update-ak esango dio erabiltzaileari ea balioak egokiak diren
 				int balio = Integer.parseInt(BalioaText.getText());
+				if(balio<0 || balio>9){
+					throw new NumberFormatException();
+				}
 				String s = HautagaiakText.getText();
 				String[] arrayS = s.split(" ");
+				int hautagaia=0;
 				for (String x : arrayS) {
 					// Begiratuko dugu exceptionen bat botatzen duen.
-					Integer.parseInt(x);
+					hautagaia=Integer.parseInt(x);
+					if(hautagaia<0 || hautagaia>9){
+						throw new NumberFormatException();
+					}
 				}
 				// Momentu honetan ez badu exceptionik eman badakigu erabiltzaileak dena ondo
 				// sartu duela.
@@ -165,8 +171,15 @@ public class SudokuBista extends JFrame implements Observer {
 					if (t.zuzenaDa()) {
 						JOptionPane.showMessageDialog(null, "Sudokua asmatu duzu! :) ", "Zorionak!",
 								JOptionPane.PLAIN_MESSAGE);
-						setVisible(false);
-						SesioKudeatzaile.getInstance().partidaBukatu();
+						if(SesioKudeatzaile.getInstance().getLvl()==3){
+							JOptionPane.showMessageDialog(null, "Sudokuak bukatu dituzu! :) ", "Bukaera panela",
+									JOptionPane.PLAIN_MESSAGE);
+							System.exit(0);
+						}
+						else{
+							setVisible(false);
+							SesioKudeatzaile.getInstance().partidaBukatu();
+						}
 					} else {
 						JOptionPane.showMessageDialog(null, "Sudokua gaizki dago :( ", "Adi!",
 								JOptionPane.ERROR_MESSAGE);

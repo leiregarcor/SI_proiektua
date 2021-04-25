@@ -51,4 +51,8 @@ public class SesioKudeatzaile {
         lvl++;
         SudokuBista.main(null);
     }
+
+    public int getLvl() {
+        return lvl;
+    }
 }
