@@ -152,6 +152,10 @@ public class SudokuBista extends JFrame implements Observer {
 				if(balio<0 || balio>9){
 					throw new NumberFormatException();
 				}
+				Boolean[] haut = new Boolean[9];
+				for(boolean b: haut){ //false-ra hasieratzen ditugu true bistan dauden hautagaiak izango direlako
+					b=false;
+				}
 				String s = HautagaiakText.getText();
 				String[] arrayS = s.split(" ");
 				int hautagaia=0;
@@ -161,11 +165,12 @@ public class SudokuBista extends JFrame implements Observer {
 					if(hautagaia<0 || hautagaia>9){
 						throw new NumberFormatException();
 					}
+					haut[hautagaia]=true;
 				}
 				// Momentu honetan ez badu exceptionik eman badakigu erabiltzaileak dena ondo
 				// sartu duela.
 				// Balioak eguneratu
-				Sudoku.getNireSudoku().kasilaEguneratu(unekoa.getErr(), unekoa.getZut(), balio, s);
+				Sudoku.getNireSudoku().kasilaEguneratu(unekoa.getErr(), unekoa.getZut(), balio, haut);
 				Tablero t = Sudoku.getNireSudoku().getTablero();
 				if (t.partidaBukatu()) {
 					if (t.zuzenaDa()) {

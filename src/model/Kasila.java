@@ -10,7 +10,7 @@ public abstract class Kasila {
     public Kasila(int err, int zut) {
         this.err = err;
         this.zut = zut;
-        this.koadrante = (err / 3) * (zut / 3);
+        this.koadrante = (err / 3) * 3 + (zut / 3);
     }
 
     public int getBista() {

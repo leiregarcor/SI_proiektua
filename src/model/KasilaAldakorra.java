@@ -1,19 +1,20 @@
 package model;
 
 public class KasilaAldakorra extends Kasila {
-    private String aukerak;
+    private Boolean[] aukerak;
+    private Boolean[] borratuta;
 
     public KasilaAldakorra(int pErr, int pZut) {
         super(pErr, pZut);
+        aukerak = new Boolean[10];
+        borratuta = new Boolean[10];
     }
 
-
-
-    public String getAukerak() {
+    public Boolean[] getAukerak() {
         return aukerak;
     }
 
-    public void setAukerak(String aukerak) {
+    public void setAukerak(Boolean[] aukerak) {
         this.aukerak = aukerak;
     }
 
@@ -23,5 +24,11 @@ public class KasilaAldakorra extends Kasila {
         // zuzena bada, false bestela.
         return this.soluzio == this.bista;
     }
+    public Boolean[] getBorratuta() {
+        return borratuta;
+    }
 
+    public void setBorratuta(Boolean[] borratuta) {
+        this.borratuta = borratuta;
+    }
 }
