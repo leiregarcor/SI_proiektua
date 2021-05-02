@@ -30,7 +30,7 @@ public abstract class Kasila {
     }
 
     public int getErr() {
-        return zut;
+        return err;
     }
 
     public void setErr(int y) {

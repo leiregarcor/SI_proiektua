@@ -7,10 +7,8 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
-import model.Mezua;
-import model.SesioKudeatzaile;
-import model.Sudoku;
-import model.Tablero;
+import model.*;
+
 import java.awt.GridLayout;
 import java.awt.GridBagLayout;
 import javax.swing.JLabel;
@@ -152,9 +150,13 @@ public class SudokuBista extends JFrame implements Observer {
 				if(balio<0 || balio>9){
 					throw new NumberFormatException();
 				}
-				Boolean[] haut = new Boolean[9];
-				for(boolean b: haut){ //false-ra hasieratzen ditugu true bistan dauden hautagaiak izango direlako
-					b=false;
+				Boolean aldatuB=false;
+				if(balio!=0){
+					aldatuB=true;
+				}
+				Boolean[] haut = new Boolean[10];
+				for(int i=0; i< haut.length;i++){ //false-ra hasieratzen ditugu true bistan dauden hautagaiak izango direlako
+					haut[i]=false;
 				}
 				String s = HautagaiakText.getText();
 				String[] arrayS = s.split(" ");
@@ -170,7 +172,7 @@ public class SudokuBista extends JFrame implements Observer {
 				// Momentu honetan ez badu exceptionik eman badakigu erabiltzaileak dena ondo
 				// sartu duela.
 				// Balioak eguneratu
-				Sudoku.getNireSudoku().kasilaEguneratu(unekoa.getErr(), unekoa.getZut(), balio, haut);
+				Sudoku.getNireSudoku().kasilaEguneratu(unekoa.getErr(), unekoa.getZut(), balio, haut, aldatuB);
 				Tablero t = Sudoku.getNireSudoku().getTablero();
 				if (t.partidaBukatu()) {
 					if (t.zuzenaDa()) {
@@ -351,22 +353,20 @@ public class SudokuBista extends JFrame implements Observer {
 	public void update(Observable o, Object arg) {
 		// TODO Auto-generated method stub
 		Sudoku s = Sudoku.getNireSudoku();
-
-		if (arg == null) {
 			// matrize osoa eguneratu
-			for (int err = 0; err < matrizea.length; err++) {
-				for (int zut = 0; zut < matrizea[0].length; zut++) {
-					int i = s.getTablero().getMatrizea()[err][zut].getBista();
-					matrizea[err][zut].setBalioaKargatu(i);
+		for (int err = 0; err < matrizea.length; err++) {
+			for (int zut = 0; zut < matrizea[0].length; zut++) {
+				int i = s.getTablero().getMatrizea()[err][zut].getBista();
+				if(s.getTablero().getMatrizea()[err][zut] instanceof KasilaAldakorra){
+					KasilaAldakorra k= (KasilaAldakorra) s.getTablero().getMatrizea()[err][zut];
+					String h= k.hautagaiakToString();
+					matrizea[err][zut].setHautagaiak(h);
+					matrizea[err][zut].setBalioaKargatu(i,false);
+				}
+				else {
+					matrizea[err][zut].setBalioaKargatu(i,true);
 				}
 			}
-		} else {
-			Mezua mezu= (Mezua) arg;
-			// pasatutako kasila eguneratu
-			int[] info = mezu.getInfo();
-			String hautagaiak= mezu.getHautagaiak();
-			matrizea[info[0]][info[1]].setBalioa(info[2]);
-			matrizea[info[0]][info[1]].setHautagaiak(hautagaiak);
 		}
 	}
 }

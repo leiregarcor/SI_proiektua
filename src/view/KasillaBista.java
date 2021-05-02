@@ -36,7 +36,7 @@ public class KasillaBista extends JPanel {
 		this.setLayout(panel);
 
 		hautagaiak = new JLabel();
-		hautagaiak.setForeground(Color.RED);
+		hautagaiak.setForeground(Color.BLUE);
 		GridBagConstraints gbc_hautagaiak = new GridBagConstraints();
 		gbc_hautagaiak.insets = new Insets(0, 0, 5, 0);
 		gbc_hautagaiak.weighty = 0.1;
@@ -93,13 +93,18 @@ public class KasillaBista extends JPanel {
 		}
 	}
 
-	public void setBalioaKargatu(int i) {
+	public void setBalioaKargatu(int i, boolean b) {
 		String s = String.valueOf(i);
 		if (i == 0) {
 			balioa.setText(" ");
 		} else {
 			balioa.setText(s);
-			balioa.setForeground(Color.BLUE);
+			if(b){
+				balioa.setForeground(Color.RED);
+			}
+			else{
+				balioa.setForeground(Color.BLACK);
+			}
 		}
 	}
 

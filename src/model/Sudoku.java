@@ -27,16 +27,18 @@ public class Sudoku extends Observable {
         notifyObservers();
     }
 
-    public void kasilaEguneratu(int pErr, int pZut, int pBalio, Boolean[] pHautagaiak) {
+    public void kasilaEguneratu(int pErr, int pZut, int pBalio, Boolean[] pHautagaiak, Boolean pBalioaAldatu) {
         if(tablero.getMatrizea()[pErr][pZut] instanceof KasilaAldakorra){
-            tablero.getMatrizea()[pErr][pZut].setBista(pBalio);
-            ((KasilaAldakorra) tablero.getMatrizea()[pErr][pZut]).setAukerak(pHautagaiak);
-            hautagaiakLortu();
-            Mezua mezu= new Mezua();
-            mezu.setHautagaiak(pHautagaiak);
-            mezu.setInfo(new int[] { pErr, pZut, pBalio});
+            if(pBalioaAldatu){
+                tablero.getMatrizea()[pErr][pZut].setBista(pBalio);
+                ((KasilaAldakorra) tablero.getMatrizea()[pErr][pZut]).hautagaiakErreseteatu();
+                hautagaiakLortu();
+            }
+            else{
+                ((KasilaAldakorra) tablero.getMatrizea()[pErr][pZut]).setAukerak(pHautagaiak);
+            }
             setChanged();
-            notifyObservers(mezu);
+            notifyObservers();
         }
     }
 
@@ -54,7 +56,7 @@ public class Sudoku extends Observable {
 
     private void hautagaiakKalkulatu(KasilaAldakorra pKasila) {
         Kasila[][] matrize = tablero.getMatrizea();
-        int zenbaki;
+        int zenbaki=0;
         for (int err = 0; err < matrize.length; err++) {
             for (int zut = 0; zut < matrize[0].length; zut++) {
                 if (err == pKasila.getErr() || zut == pKasila.getZut() || (err / 3) * 3 + (zut / 3) == pKasila.getKoadrante()) {
