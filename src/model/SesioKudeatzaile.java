@@ -49,6 +49,13 @@ public class SesioKudeatzaile {
     }
     public void partidaBukatu(){
         lvl++;
-        SudokuBista.main(null);
+        if(lvl<=3){
+            SudokuBista.main(null);
+        }
+        //RANKING-A HEMEN
+    }
+
+    public int getLvl() {
+        return lvl;
     }
 }
