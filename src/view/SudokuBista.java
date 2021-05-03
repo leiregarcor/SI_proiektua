@@ -7,10 +7,8 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
-import model.Mezua;
-import model.SesioKudeatzaile;
-import model.Sudoku;
-import model.Tablero;
+import model.*;
+
 import java.awt.GridLayout;
 import java.awt.GridBagLayout;
 import javax.swing.JLabel;
@@ -44,8 +42,7 @@ public class SudokuBista extends JFrame implements Observer {
 			try {
 				SudokuBista frame = new SudokuBista();
 				frame.setVisible(true);
-				SesioKudeatzaile.getInstance().tableroaKargatu();// HasieraPanela ez denez sprint honen parte soilik 1 zailtasunarekin frogatuko
-									// dugu.
+				SesioKudeatzaile.getInstance().tableroaKargatu();
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
@@ -150,23 +147,46 @@ public class SudokuBista extends JFrame implements Observer {
 			try {// egokiena ereduari pasatu zer sartu den eta ereduak ikustea ea egokiak diren
 					// balioak eta update-ak esango dio erabiltzaileari ea balioak egokiak diren
 				int balio = Integer.parseInt(BalioaText.getText());
+				if(balio<0 || balio>9){
+					throw new NumberFormatException();
+				}
+				Boolean aldatuB=false;
+				if(balio!=0){
+					aldatuB=true;
+				}
+				Boolean[] haut = new Boolean[10];
+				for(int i=0; i< haut.length;i++){ //false-ra hasieratzen ditugu true bistan dauden hautagaiak izango direlako
+					haut[i]=false;
+				}
 				String s = HautagaiakText.getText();
 				String[] arrayS = s.split(" ");
+				int hautagaia=0;
 				for (String x : arrayS) {
 					// Begiratuko dugu exceptionen bat botatzen duen.
-					Integer.parseInt(x);
+					hautagaia=Integer.parseInt(x);
+					if(hautagaia<0 || hautagaia>9){
+						throw new NumberFormatException();
+					}
+					haut[hautagaia]=true;
 				}
 				// Momentu honetan ez badu exceptionik eman badakigu erabiltzaileak dena ondo
 				// sartu duela.
 				// Balioak eguneratu
-				Sudoku.getNireSudoku().kasilaEguneratu(unekoa.getErr(), unekoa.getZut(), balio, s);
+				Sudoku.getNireSudoku().kasilaEguneratu(unekoa.getErr(), unekoa.getZut(), balio, haut, aldatuB);
 				Tablero t = Sudoku.getNireSudoku().getTablero();
 				if (t.partidaBukatu()) {
 					if (t.zuzenaDa()) {
 						JOptionPane.showMessageDialog(null, "Sudokua asmatu duzu! :) ", "Zorionak!",
 								JOptionPane.PLAIN_MESSAGE);
-						setVisible(false);
-						SesioKudeatzaile.getInstance().partidaBukatu();
+						if(SesioKudeatzaile.getInstance().getLvl()==3){
+							JOptionPane.showMessageDialog(null, "Sudokuak bukatu dituzu! :) ", "Bukaera panela",
+									JOptionPane.PLAIN_MESSAGE);
+							System.exit(0);
+						}
+						else{
+							setVisible(false);
+							SesioKudeatzaile.getInstance().partidaBukatu();
+						}
 					} else {
 						JOptionPane.showMessageDialog(null, "Sudokua gaizki dago :( ", "Adi!",
 								JOptionPane.ERROR_MESSAGE);
@@ -333,22 +353,20 @@ public class SudokuBista extends JFrame implements Observer {
 	public void update(Observable o, Object arg) {
 		// TODO Auto-generated method stub
 		Sudoku s = Sudoku.getNireSudoku();
-
-		if (arg == null) {
 			// matrize osoa eguneratu
-			for (int err = 0; err < matrizea.length; err++) {
-				for (int zut = 0; zut < matrizea[0].length; zut++) {
-					int i = s.getTablero().getMatrizea()[err][zut].getBista();
-					matrizea[err][zut].setBalioaKargatu(i);
+		for (int err = 0; err < matrizea.length; err++) {
+			for (int zut = 0; zut < matrizea[0].length; zut++) {
+				int i = s.getTablero().getMatrizea()[err][zut].getBista();
+				if(s.getTablero().getMatrizea()[err][zut] instanceof KasilaAldakorra){
+					KasilaAldakorra k= (KasilaAldakorra) s.getTablero().getMatrizea()[err][zut];
+					String h= k.hautagaiakToString();
+					matrizea[err][zut].setHautagaiak(h);
+					matrizea[err][zut].setBalioaKargatu(i,false);
+				}
+				else {
+					matrizea[err][zut].setBalioaKargatu(i,true);
 				}
 			}
-		} else {
-			Mezua mezu= (Mezua) arg;
-			// pasatutako kasila eguneratu
-			int[] info = mezu.getInfo();
-			String hautagaiak= mezu.getHautagaiak();
-			matrizea[info[0]][info[1]].setBalioa(info[2]);
-			matrizea[info[0]][info[1]].setHautagaiak(hautagaiak);
 		}
 	}
 }
