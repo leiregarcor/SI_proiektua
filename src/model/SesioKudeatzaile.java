@@ -49,7 +49,7 @@ public class SesioKudeatzaile {
          * agertuko da eta berriro saiatzeko eskaten zaio erabiltzaileari.
          *
          */
-        Loader.getInstance().tableroakKargatu();
+        Reader.getInstance().tableroakKargatu();
         HasieraPanela.main(null);
 
     }
