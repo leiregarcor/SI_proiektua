@@ -79,4 +79,9 @@ public class Sudoku extends Observable {
         }
     }
 
+    public void SoleCandidateLaguntza()
+    {
+        this.tablero.soleCandidateLaguntza();
+    }
+
 }
