@@ -20,11 +20,14 @@ public class Sudoku extends Observable {
         return tablero;
     }
 
-    public void tableroKargatu(int pLvl){
-        tablero.tableroaKargatu(pLvl);
-        hautagaiakLortu();
-        setChanged();
-        notifyObservers();
+    public boolean tableroKargatu(int pLvl){
+        Boolean b=tablero.tableroaKargatu(pLvl);
+        if(b){
+            hautagaiakLortu();
+            setChanged();
+            notifyObservers();
+        }
+        return b;
     }
 
     public void kasilaEguneratu(int pErr, int pZut, int pBalio, Boolean[] pHautagaiak, Boolean pBalioaAldatu) {
@@ -35,6 +38,7 @@ public class Sudoku extends Observable {
                 hautagaiakLortu();
             }
             else{
+                tablero.getMatrizea()[pErr][pZut].setBista(pBalio);
                 ((KasilaAldakorra) tablero.getMatrizea()[pErr][pZut]).setAukerak(pHautagaiak);
             }
             setChanged();

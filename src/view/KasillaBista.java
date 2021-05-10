@@ -86,8 +86,8 @@ public class KasillaBista extends JPanel {
 
 	public void setBalioa(int i) {
 		String s = String.valueOf(i);
-		if (i == 0) {
-			balioa.setText(" ");
+		if (i==0) {
+			balioa.setText("");
 		} else {
 			balioa.setText(s);
 		}

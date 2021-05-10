@@ -36,24 +36,33 @@ public class Tablero {
         this.matrizea = matrizea;
     }
 
-    public void tableroaKargatu(int lvl){
-        int bista[][]=TableroCatalog.getInstance().getTablero(lvl).getBista();
-        int soluzioa[][]=TableroCatalog.getInstance().getTablero(lvl).getSoluzioa();
-        for (int err=0; err< matrizea.length; err++) {
-            for (int zut=0; zut< matrizea[0].length;zut++){
-                if (bista[err][zut]==0){
-                    matrizea[err][zut] = new KasilaAldakorra(err, zut);
-                    matrizea[err][zut].setBista(bista[err][zut]);
-                    matrizea[err][zut].setSoluzio(soluzioa[err][zut]);
-                }
-                else{
-                    matrizea[err][zut]= new KasilaAldaezina(err, zut);
-                    matrizea[err][zut].setBista(bista[err][zut]);
-                    matrizea[err][zut].setSoluzio(soluzioa[err][zut]);
-                    kasilaHutsik--;
+    public boolean tableroaKargatu(int lvl){
+        Boolean b=true;
+        if(TableroCatalog.getInstance().getTablero(lvl)==null){
+            b=false;
+        }
+        else{
+            int bista[][]=TableroCatalog.getInstance().getTablero(lvl).getBista();
+            int soluzioa[][]=TableroCatalog.getInstance().getTablero(lvl).getSoluzioa();
+            Kasila k;
+            for (int err=0; err< matrizea.length; err++) {
+                for (int zut=0; zut< matrizea[0].length;zut++){
+                    if (bista[err][zut]==0){
+                        matrizea[err][zut] = new KasilaAldakorra(err, zut);
+                        matrizea[err][zut].setBista(bista[err][zut]);
+                        if(matrizea[err][zut] instanceof KasilaAldakorra){
+                            ((KasilaAldakorra) matrizea[err][zut]).setSoluzio(soluzioa[err][zut]);
+                        }
+                    }
+                    else{
+                        matrizea[err][zut]= new KasilaAldaezina(err, zut);
+                        matrizea[err][zut].setBista(bista[err][zut]);
+                        kasilaHutsik--;
+                    }
                 }
             }
         }
+        return b;
     }
 
     public boolean partidaBukatu() {

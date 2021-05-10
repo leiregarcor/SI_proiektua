@@ -31,7 +31,13 @@ public class SesioKudeatzaile {
     }
 
     public void tableroaKargatu(){
-        Sudoku.getNireSudoku().tableroKargatu(lvl);
+        Boolean b=Sudoku.getNireSudoku().tableroKargatu(lvl);
+        if(!b){
+            if(lvl<3){
+                lvl=lvl+1;
+            }
+            System.out.println("Ez dago sudokurik");
+        }
     }
 
     public static void main(String[] args) {

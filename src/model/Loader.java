@@ -21,8 +21,8 @@ public class Loader {
     public void tableroakKargatu() {
         BufferedReader reader;
         try {
-            reader = new BufferedReader(new FileReader("resources/sudoku.txt"));
-            //reader = new BufferedReader(new FileReader("resources/sudokuDemo.txt"));
+            //reader = new BufferedReader(new FileReader("resources/sudoku.txt"));
+            reader = new BufferedReader(new FileReader("resources/sudokuDemo.txt"));
             String line = reader.readLine();
             RawTablero rTablero;
             while (line != null) {

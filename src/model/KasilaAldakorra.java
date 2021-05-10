@@ -1,6 +1,7 @@
 package model;
 
 public class KasilaAldakorra extends Kasila {
+    private int soluzio; // erabiltzaileak sartutakoa
     private Boolean[] aukerak;  //Bistaratzen eta kalkulatzen diren hautagaiak
     private Boolean[] borratuta; //Manualki borratutako hautagaiak
 
@@ -12,6 +13,13 @@ public class KasilaAldakorra extends Kasila {
             aukerak[i]=true;
             borratuta[i]=false;
         }
+    }
+    public int getSoluzio() {
+        return soluzio;
+    }
+
+    public void setSoluzio(int soluzio) {
+        this.soluzio = soluzio;
     }
 
     public Boolean[] getAukerak() {
