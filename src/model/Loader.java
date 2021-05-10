@@ -9,8 +9,7 @@ import model.Tablero;
 public class Loader {
     private static Loader loader = null;
 
-    private Loader() {
-    }
+    private Loader() {}
 
     public static Loader getInstance() {
         if (loader == null) {
