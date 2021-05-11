@@ -3,27 +3,24 @@ package model;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
-import java.util.ArrayList;
-import model.Tablero;
 
-public class Loader {
-    private static Loader loader = null;
+public class Reader {
+    private static Reader reader = null;
 
-    private Loader() {
-    }
+    private Reader() {}
 
-    public static Loader getInstance() {
-        if (loader == null) {
-            loader = new Loader();
+    public static Reader getInstance() {
+        if (reader == null) {
+            reader = new Reader();
         }
-        return loader;
+        return reader;
     }
 
     public void tableroakKargatu() {
         BufferedReader reader;
         try {
-            reader = new BufferedReader(new FileReader("resources/sudoku.txt"));
-            //reader = new BufferedReader(new FileReader("resources/sudokuDemo.txt"));
+            //reader = new BufferedReader(new FileReader("resources/sudoku.txt"));
+            reader = new BufferedReader(new FileReader("resources/sudokuDemo.txt"));
             String line = reader.readLine();
             RawTablero rTablero;
             while (line != null) {

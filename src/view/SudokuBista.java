@@ -146,8 +146,14 @@ public class SudokuBista extends JFrame implements Observer {
 			}
 			try {// egokiena ereduari pasatu zer sartu den eta ereduak ikustea ea egokiak diren
 					// balioak eta update-ak esango dio erabiltzaileari ea balioak egokiak diren
-				int balio = Integer.parseInt(BalioaText.getText());
-				if(balio<0 || balio>9){
+				int balio;
+				if(BalioaText.getText().equals("")){
+					balio=0;
+				}
+				else{
+					balio = Integer.parseInt(BalioaText.getText());
+				}
+				if(balio < 0 || balio > 9){
 					throw new NumberFormatException();
 				}
 				Boolean aldatuB=false;
