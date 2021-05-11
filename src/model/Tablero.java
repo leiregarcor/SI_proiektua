@@ -107,7 +107,7 @@ public class Tablero {
         int pos=0;
         int zenbaki = 0;
         int zut=0;
-        int err = 0;
+        int err=0;
         while (!aurk && err < matrizea.length) {
             zut=0;
             while (!aurk && zut < matrizea[0].length) {
@@ -115,8 +115,9 @@ public class Tablero {
                     KasilaAldakorra ka= (KasilaAldakorra) matrizea[err][zut];
                     Boolean[] posible= new Boolean[10];
                     Arrays.fill(posible, true);
-                    for (int e = 0; err < matrizea.length; err++) {
-                        for (int z = 0; zut < matrizea[0].length; zut++) {
+                    posible[0]=false;
+                    for (int e = 0; e < matrizea.length; e++) {
+                        for (int z = 0; z < matrizea[0].length; z++) {
                             if (e == ka.getErr() || z == ka.getZut() || (e / 3) * 3 + (z / 3) == ka.getKoadrante()) {
                                 zenbaki=matrizea[e][z].getBista();
                                 if(zenbaki!=0 && posible[zenbaki]){
@@ -137,51 +138,129 @@ public class Tablero {
                     }
                     kont=0;
                 }
+                zut++;
             }
+            err++;
         }
         if(!aurk){
             ema= new int[]{-1,-1,-1};
         }
         return ema;
     }
-    /*{
-        // Hautagaien kalkuluan Sole Candidate metodoa erabili da, beraz hautagaiak erabiliko ditugu metodo honetan
+
+    public int[] uniqueCandidateLaguntza(){
         boolean aurk = false;
         int[] ema= new int[3];
         int kont = 0;
-        int pos = 0;
-        int zut, err = 0;
-        while ((!aurk)&&(err < this.matrizea.length))
-        {
+        int pos=0;
+        int zut=0;
+        int err = 0;
+        while (!aurk&&err<matrizea.length) {
             zut = 0;
-            while ((!aurk)&&(zut < this.matrizea[0].length))
-            {
-                if (matrizea[err][zut] instanceof KasilaAldakorra && matrizea[err][zut].getBista()==0){
-                    KasilaAldakorra kald = (KasilaAldakorra) matrizea[err][zut];
-                    for (int k = 1; k < kald.getAukerak().length; k++) // Aukerak errekorritu (1etik 9 ra)
-                    {
-                        if (kald.getAukerak()[k]) {
-                            kont++; // Kontagailua hautagai kopurua izango du.
-                            pos = k;
+            while (!aurk && zut < matrizea.length) {
+                if (matrizea[err][zut] instanceof KasilaAldakorra && matrizea[err][zut].getBista() == 0) {
+                    KasilaAldakorra ka = (KasilaAldakorra) matrizea[err][zut];
+                    Boolean[] posible = new Boolean[10];
+                    Arrays.fill(posible, true);
+                    posible[0] = false;
+                    for (int errenkada = 0; errenkada < matrizea.length; errenkada++) {
+                        if (matrizea[errenkada][zut] instanceof KasilaAldakorra && matrizea[errenkada][zut].getBista() == 0) {
+                            KasilaAldakorra ka2 = (KasilaAldakorra) matrizea[errenkada][zut];
+                            if(!ka2.equals(ka)){
+                                for (int i = 0; i < ka2.getAukerak().length; i++) {
+                                    if (ka2.getAukerak()[i]) {
+                                        posible[i] = false;
+                                    }
+                                }
+                            }
+                        }
+                        else {
+                            posible[matrizea[errenkada][zut].getBista()]=false;
                         }
                     }
-                    if (kont == 1) // Hautagai bakarra badago hori izango da Sole Candidate eta pos aldagaian dago balio hori
-                    {
+                    for (int j = 0; j < posible.length; j++) {
+                        if (posible[j]) {
+                            kont++;
+                            pos = j;
+                        }
+                    }
+                    if (kont == 1) {
                         aurk = true;
-                        ema= new int[]{pos, err, zut};
-                    }else{
+                        ema = new int[]{pos, err, zut};
+                    }
+                    kont = 0;
+                    if (!aurk) {
+                        Arrays.fill(posible, true);
+                        posible[0] = false;
+                        for (int zutabea = 0; zutabea < matrizea[0].length; zutabea++) {
+                            if (matrizea[err][zutabea] instanceof KasilaAldakorra && matrizea[err][zutabea].getBista() == 0) {
+                                KasilaAldakorra ka2 = (KasilaAldakorra) matrizea[err][zutabea];
+                                if(!ka2.equals(ka)){
+                                    for (int i = 0; i < ka2.getAukerak().length; i++) {
+                                        if (ka2.getAukerak()[i]) {
+                                            posible[i] = false;
+                                        }
+                                    }
+                                }
+                            }
+                            else {
+                                posible[matrizea[err][zutabea].getBista()]=false;
+                            }
+                        }
+                        for (int j = 0; j < posible.length; j++) {
+                            if (posible[j]) {
+                                kont++;
+                                pos = j;
+                            }
+                        }
+                        if (kont == 1) {
+                            aurk = true;
+                            ema = new int[]{pos, err, zut};
+                        }
                         kont = 0;
+                        if (!aurk) {
+                            Arrays.fill(posible, true);
+                            posible[0] = false;
+                            for (int e = 0; e < matrizea.length; e++) {
+                                for (int z = 0; z < matrizea[0].length; z++) {
+                                    if ((e / 3) * 3 + (z / 3) == ka.getKoadrante()) {
+                                        if (matrizea[e][z] instanceof KasilaAldakorra && matrizea[e][z].getBista() == 0) {
+                                            KasilaAldakorra ka2 = (KasilaAldakorra) matrizea[e][z];
+                                            if(!ka2.equals(ka)){
+                                                for (int i = 0; i < ka2.getAukerak().length; i++) {
+                                                    if (ka2.getAukerak()[i]) {
+                                                        posible[i] = false;
+                                                    }
+                                                }
+                                            }
+                                        }
+                                        else {
+                                            posible[matrizea[e][z].getBista()]=false;
+                                        }
+                                    }
+                                }
+                            }
+                            for (int j = 0; j < posible.length; j++) {
+                                if (posible[j]) {
+                                    kont++;
+                                    pos = j;
+                                }
+                            }
+                            if (kont == 1) {
+                                aurk = true;
+                                ema = new int[]{pos, err, zut};
+                            }
+                            kont = 0;
+                        }
                     }
                 }
                 zut++;
             }
             err++;
         }
-        // ema true bada emaitza aurkitu da, bestela ez.
-        if (!aurk)
-        {
+        if(!aurk){
             ema= new int[]{-1,-1,-1};
         }
         return ema;
-    }*/
+    }
 }

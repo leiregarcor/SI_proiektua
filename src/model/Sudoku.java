@@ -79,9 +79,25 @@ public class Sudoku extends Observable {
         }
     }
 
-    public void SoleCandidateLaguntza()
-    {
-        this.tablero.soleCandidateLaguntza();
+    public void laguntzaKudeatu(){
+        int[] sol= tablero.soleCandidateLaguntza();
+        int lag=1;
+        if(sol[0]==-1){
+            sol=tablero.uniqueCandidateLaguntza();
+            if(sol[0]==-1){
+                setChanged();
+                notifyObservers(0);
+            }
+            lag=2;
+        }
+        if (sol[0]!=-1){
+            Boolean[] haut= new Boolean[10];
+            Arrays.fill(haut, false);
+            kasilaEguneratu(sol[1],sol[2],sol[0],haut,true);
+            int[] mezu= new int[]{lag,sol[0],sol[1],sol[2]};
+            setChanged();
+            notifyObservers(mezu);
+        }
     }
 
 }

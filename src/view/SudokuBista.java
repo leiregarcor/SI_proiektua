@@ -224,6 +224,27 @@ public class SudokuBista extends JFrame implements Observer {
 
 		JButton btnLaguntza = new JButton("Laguntza");
 		btnLaguntza.addActionListener(e -> {
+			Sudoku.getNireSudoku().laguntzaKudeatu();
+			Tablero t = Sudoku.getNireSudoku().getTablero();
+			if (t.partidaBukatu()) {
+				if (t.zuzenaDa()) {
+					JOptionPane.showMessageDialog(null, "Sudokua asmatu duzu! :) ", "Zorionak!",
+							JOptionPane.PLAIN_MESSAGE);
+					if(SesioKudeatzaile.getInstance().getLvl()==3){
+						JOptionPane.showMessageDialog(null, "Sudokuak bukatu dituzu! :) ", "Bukaera panela",
+								JOptionPane.PLAIN_MESSAGE);
+						System.exit(0);
+					}
+					else{
+						setVisible(false);
+						SesioKudeatzaile.getInstance().partidaBukatu();
+					}
+				} else {
+					JOptionPane.showMessageDialog(null, "Sudokua gaizki dago :( ", "Adi!",
+							JOptionPane.ERROR_MESSAGE);
+					System.exit(0);
+				}
+			}
 		});
 		btnLaguntza.setVerticalAlignment(SwingConstants.CENTER);
 		btnLaguntza.setHorizontalAlignment(SwingConstants.CENTER);
@@ -358,21 +379,37 @@ public class SudokuBista extends JFrame implements Observer {
 	@Override
 	public void update(Observable o, Object arg) {
 		// TODO Auto-generated method stub
-		Sudoku s = Sudoku.getNireSudoku();
+		if(arg==null){
+			Sudoku s = Sudoku.getNireSudoku();
 			// matrize osoa eguneratu
-		for (int err = 0; err < matrizea.length; err++) {
-			for (int zut = 0; zut < matrizea[0].length; zut++) {
-				int i = s.getTablero().getMatrizea()[err][zut].getBista();
-				if(s.getTablero().getMatrizea()[err][zut] instanceof KasilaAldakorra){
-					KasilaAldakorra k= (KasilaAldakorra) s.getTablero().getMatrizea()[err][zut];
-					String h= k.hautagaiakToString();
-					matrizea[err][zut].setHautagaiak(h);
-					matrizea[err][zut].setBalioaKargatu(i,false);
-				}
-				else {
-					matrizea[err][zut].setBalioaKargatu(i,true);
+			for (int err = 0; err < matrizea.length; err++) {
+				for (int zut = 0; zut < matrizea[0].length; zut++) {
+					int i = s.getTablero().getMatrizea()[err][zut].getBista();
+					if(s.getTablero().getMatrizea()[err][zut] instanceof KasilaAldakorra){
+						KasilaAldakorra k= (KasilaAldakorra) s.getTablero().getMatrizea()[err][zut];
+						String h= k.hautagaiakToString();
+						matrizea[err][zut].setHautagaiak(h);
+						matrizea[err][zut].setBalioaKargatu(i,false);
+					}
+					else {
+						matrizea[err][zut].setBalioaKargatu(i,true);
+					}
 				}
 			}
+		}
+		else {
+			int[]mezu= (int[]) arg;
+			if(mezu[0]==0){
+				JOptionPane.showMessageDialog(null, "Laguntzak ez du soluziorik aurkitu.", "Errore mezua",
+						JOptionPane.ERROR_MESSAGE);
+			}
+			else {
+				int laguntza=mezu[0];
+				int balioa=mezu[1];
+				int err=mezu[2];
+				int zut=mezu[3];
+			}
+
 		}
 	}
 }
