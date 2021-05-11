@@ -1,22 +1,16 @@
 package view;
 
-import java.awt.BorderLayout;
-import java.awt.Color;
-import java.awt.EventQueue;
+import java.awt.*;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import model.*;
 
-import java.awt.GridLayout;
-import java.awt.GridBagLayout;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
-import java.awt.GridBagConstraints;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
-import java.awt.Insets;
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import java.awt.event.MouseEvent;
@@ -33,6 +27,7 @@ public class SudokuBista extends JFrame implements Observer {
 	private JTextField BalioaText;
 	private KasillaBista unekoa;
 	private KasillaBista[][] matrizea = new KasillaBista[9][9];
+	private JTextPane txtpnEstrategia;
 
 	/**
 	 * Launch the application.
@@ -262,9 +257,9 @@ public class SudokuBista extends JFrame implements Observer {
 		panel_3.setLayout(null);
 		panel_3.add(btnExit);
 
-		JTextPane textPane = new JTextPane();
-		textPane.setBounds(10, 11, 109, 110);
-		panel_3.add(textPane);
+		txtpnEstrategia = new JTextPane();
+		txtpnEstrategia.setBounds(10, 11, 109, 110);
+		panel_3.add(txtpnEstrategia);
 		setLocationRelativeTo(null);
 
 	}
@@ -404,12 +399,18 @@ public class SudokuBista extends JFrame implements Observer {
 						JOptionPane.ERROR_MESSAGE);
 			}
 			else {
-				int laguntza=mezu[0];
+				String laguntza="";
+				if(mezu[0]==1){
+					laguntza="Sole Candidate";
+				}
+				if (mezu[0]==2){
+					laguntza="Unique Candidate";
+				}
 				int balioa=mezu[1];
 				int err=mezu[2];
 				int zut=mezu[3];
+				txtpnEstrategia.setText("Estrategia->"+laguntza+"\r\nKasila->("+err+","+zut+")\r\nBalioa->"+balioa);
 			}
-
 		}
 	}
 }

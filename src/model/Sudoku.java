@@ -85,8 +85,9 @@ public class Sudoku extends Observable {
         if(sol[0]==-1){
             sol=tablero.uniqueCandidateLaguntza();
             if(sol[0]==-1){
+                int[] mezu= new int[]{0};
                 setChanged();
-                notifyObservers(0);
+                notifyObservers(mezu);
             }
             lag=2;
         }
