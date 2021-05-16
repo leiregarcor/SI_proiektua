@@ -1,5 +1,6 @@
 package view;
 
+import model.Erabiltzaile;
 import model.SesioKudeatzaile;
 
 import javax.swing.JButton;
@@ -81,7 +82,7 @@ public class HasieraPanela extends JDialog {
 						setVisible(false);
 						Integer lvl= Integer.parseInt(s);
 						SesioKudeatzaile.getInstance().setLvl(lvl);
-						SesioKudeatzaile.getInstance().setIzena(textField.getText());
+						Erabiltzaile.getInstance().setIzena(textField.getText());
 						// sudokua kargatu.
 						SudokuBista.main(null);
 					} else {

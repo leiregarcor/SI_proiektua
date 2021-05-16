@@ -4,13 +4,30 @@ public class Erabiltzaile {
 
     private String izena;
     private int puntuazioa;
+    private int laguntzaKop;
+    private static Erabiltzaile nE= null;
 
-    public Erabiltzaile(String izena) {
-        this.izena = izena;
+    private Erabiltzaile() {
         this.puntuazioa = 0;
+        this.laguntzaKop = 0;
     }
 
-    public void puntuazioaKalkulatu(int pZailtasunMaila,int pDenbora, int pLaguntzaKop){
-        puntuazioa = (30000*pZailtasunMaila/(pDenbora+(30*pLaguntzaKop)));
+    public static Erabiltzaile getInstance(){
+        if (nE == null){
+            nE = new Erabiltzaile();
+        }
+        return nE;
+    }
+
+    public void setIzena(String izena) {
+        this.izena = izena;
+    }
+
+    public void puntuazioaKalkulatu(int pZailtasunMaila, int pDenbora){
+        puntuazioa = (30000*pZailtasunMaila/(pDenbora+(30*laguntzaKop)));
+    }
+
+    public void laguntzaHanditu(){
+        laguntzaKop++;
     }
 }

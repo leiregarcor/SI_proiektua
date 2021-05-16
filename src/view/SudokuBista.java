@@ -28,6 +28,7 @@ public class SudokuBista extends JFrame implements Observer {
 	private KasillaBista unekoa;
 	private KasillaBista[][] matrizea = new KasillaBista[9][9];
 	private JTextPane txtpnEstrategia;
+	private static long hasieraOrdua;
 
 	/**
 	 * Launch the application.
@@ -38,10 +39,14 @@ public class SudokuBista extends JFrame implements Observer {
 				SudokuBista frame = new SudokuBista();
 				frame.setVisible(true);
 				SesioKudeatzaile.getInstance().tableroaKargatu();
+				setHasieraOrdua();
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
 		});
+	}
+	public static void setHasieraOrdua(){
+		hasieraOrdua= System.nanoTime();
 	}
 
 	/**
@@ -177,6 +182,11 @@ public class SudokuBista extends JFrame implements Observer {
 				Tablero t = Sudoku.getNireSudoku().getTablero();
 				if (t.partidaBukatu()) {
 					if (t.zuzenaDa()) {
+						//Erabiltzaileak sudokua ondo egin badu, bere denbora gordeko dugu, horretarako lehenengo zenbat denbora behar izan duen kalkulatuko dugu
+						long denboraTotala= System.nanoTime()-hasieraOrdua;
+						SesioKudeatzaile.getInstance().setDenbora(denboraTotala);
+						SesioKudeatzaile.getInstance().puntuazioaKalkulatu();
+						//mezua
 						JOptionPane.showMessageDialog(null, "Sudokua asmatu duzu! :) ", "Zorionak!",
 								JOptionPane.PLAIN_MESSAGE);
 						if(SesioKudeatzaile.getInstance().getLvl()==3){
@@ -195,8 +205,6 @@ public class SudokuBista extends JFrame implements Observer {
 					}
 				}
 
-				// Hautagaiak eguneratu
-				// TODO
 
 			} catch (NumberFormatException n) {
 				JOptionPane.showMessageDialog(null, "Sartu duzun Balioa okerra da. Sartu zenbaki bat", "Errore mezua",

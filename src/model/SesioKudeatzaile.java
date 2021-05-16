@@ -6,7 +6,7 @@ import view.SudokuBista;
 public class SesioKudeatzaile {
     private static SesioKudeatzaile sk = null;
     private int lvl;
-    private String izena;
+    private long denbora;
 
     private SesioKudeatzaile() {
     }
@@ -22,13 +22,10 @@ public class SesioKudeatzaile {
         this.lvl = lvl;
     }
 
-    public String getIzena() {
-        return izena;
+    public void setDenbora(long denbora) {
+        this.denbora = denbora;
     }
 
-    public void setIzena(String izena) {
-        this.izena = izena;
-    }
 
     public void tableroaKargatu(){
         Boolean b=Sudoku.getNireSudoku().tableroKargatu(lvl);
@@ -44,6 +41,21 @@ public class SesioKudeatzaile {
 
     }
 
+    public void partidaBukatu(){
+        lvl++;
+        if(lvl<=3){
+            SudokuBista.main(null);
+        }
+    }
+
+    public int getLvl() {
+        return lvl;
+    }
+
+    public void puntuazioaKalkulatu(){
+        Erabiltzaile.getInstance().puntuazioaKalkulatu(lvl, (int) denbora);
+    }
+
     public static void main(String[] args) {
         /**
          * Kaixo, ongi etorri <3
@@ -56,16 +68,5 @@ public class SesioKudeatzaile {
         TableroCatalog.getInstance().rawTableroakKargatu();
         HasieraPanela.main(null);
 
-    }
-    public void partidaBukatu(){
-        lvl++;
-        if(lvl<=3){
-            SudokuBista.main(null);
-        }
-        //RANKING-A HEMEN
-    }
-
-    public int getLvl() {
-        return lvl;
     }
 }
