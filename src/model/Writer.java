@@ -28,7 +28,7 @@ public class Writer {
     }
 
 
-    public void fitxeroaEguneratu() throws IOException {
+   public void fitxeroaEguneratu() throws IOException {
         FileWriter fitxero= null;
         PrintWriter pw=null;
         fitxeroaSortu();

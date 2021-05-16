@@ -82,7 +82,7 @@ public class HasieraPanela extends JDialog {
 						setVisible(false);
 						Integer lvl= Integer.parseInt(s);
 						SesioKudeatzaile.getInstance().setLvl(lvl);
-						Erabiltzaile.getInstance().setIzena(textField.getText());
+						SesioKudeatzaile.getInstance().getUnekoErabiltzaile().setIzena(textField.getText());
 						// sudokua kargatu.
 						SudokuBista.main(null);
 					} else {

@@ -7,6 +7,7 @@ public class SesioKudeatzaile {
     private static SesioKudeatzaile sk = null;
     private int lvl;
     private long denbora;
+    private Erabiltzaile unekoErabiltzaile= new Erabiltzaile();
 
     private SesioKudeatzaile() {
     }
@@ -26,6 +27,9 @@ public class SesioKudeatzaile {
         this.denbora = denbora;
     }
 
+    public Erabiltzaile getUnekoErabiltzaile() {
+        return unekoErabiltzaile;
+    }
 
     public void tableroaKargatu(){
         Boolean b=Sudoku.getNireSudoku().tableroKargatu(lvl);
@@ -53,7 +57,8 @@ public class SesioKudeatzaile {
     }
 
     public void puntuazioaKalkulatu(){
-        Erabiltzaile.getInstance().puntuazioaKalkulatu(lvl, (int) denbora);
+        unekoErabiltzaile.setLvl(lvl);
+        unekoErabiltzaile.puntuazioaKalkulatu((int) denbora);
     }
 
     public static void main(String[] args) {
@@ -66,6 +71,7 @@ public class SesioKudeatzaile {
          *
          */
         TableroCatalog.getInstance().rawTableroakKargatu();
+        RankingKud.getNireRankingKud().rankingKargatu();
         HasieraPanela.main(null);
 
     }
