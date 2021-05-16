@@ -1,8 +1,10 @@
 package model;
 
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.ArrayList;
 
 public class Reader {
     private static Reader reader = null;
@@ -16,37 +18,23 @@ public class Reader {
         return reader;
     }
 
-    public void tableroakKargatu() {
+    public ArrayList<String> fitxeroakKargatu(File pFitxeroa) {
         BufferedReader reader;
+        ArrayList<String> ema = new ArrayList<String>();
+
         try {
-            //reader = new BufferedReader(new FileReader("resources/sudoku.txt"));
-            reader = new BufferedReader(new FileReader("resources/sudokuDemo.txt"));
+            reader = new BufferedReader(new FileReader(pFitxeroa));
             String line = reader.readLine();
-            RawTablero rTablero;
+
             while (line != null) {
-                // Primera linea, marca el nombre del sudoku.
-                rTablero = new RawTablero();
-                rTablero.setIzena(line);
-                // Siguiente linea marca el nivel
+                ema.add(line);
                 line = reader.readLine();
-                rTablero.setLvl(Integer.parseInt(line));
-                // Ahora empezamos los setup de los dos tipos de casillas.
-                // Primeros nueve numeros
-                for (int i = 0; i <= 8; i++) {
-                    line = reader.readLine();
-                    rTablero.balioakEsleitu(true, i, line);
-                }
-                for (int i = 0; i <= 8; i++) {
-                    // soluzioa
-                    line = reader.readLine();
-                    rTablero.balioakEsleitu(false, i, line);
-                }
-                line = reader.readLine();
-                TableroCatalog.getInstance().getLista().add(rTablero);
             }
+
             reader.close();
         } catch (IOException e) {
             e.printStackTrace();
         }
+        return ema;
     }
 }

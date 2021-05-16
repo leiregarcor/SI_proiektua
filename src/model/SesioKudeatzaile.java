@@ -35,9 +35,13 @@ public class SesioKudeatzaile {
         if(!b){
             if(lvl<3){
                 lvl=lvl+1;
+                this.tableroaKargatu();
             }
-            System.out.println("Ez dago sudokurik");
+            else{
+                System.out.println("Ez dago sudokurik");
+            }
         }
+
     }
 
     public static void main(String[] args) {
@@ -49,7 +53,7 @@ public class SesioKudeatzaile {
          * agertuko da eta berriro saiatzeko eskaten zaio erabiltzaileari.
          *
          */
-        Reader.getInstance().tableroakKargatu();
+        TableroCatalog.getInstance().rawTableroakKargatu();
         HasieraPanela.main(null);
 
     }
