@@ -45,6 +45,9 @@ public class RankingBista extends JFrame {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
+
+		setLocationRelativeTo(null);
+
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		contentPane.setLayout(new BorderLayout(0, 0));
 		setContentPane(contentPane);
@@ -69,7 +72,7 @@ public class RankingBista extends JFrame {
 			String ema= "";
 			String unekoa = " ";
 			for (int i=0; i<lista.size();i++){
-				unekoa= i + " " + lista.get(i).getIzena() + " " + lista.get(i).getPuntuazioa() + " " + lista.get(i).getLvl()+"\r\n";
+				unekoa= (i+1) + " " + lista.get(i).getIzena() + " " + lista.get(i).getPuntuazioa() + " " + lista.get(i).getLvl()+"\r\n";
 				ema= ema+unekoa;
 			}
 			textPane.setText(ema);
@@ -82,7 +85,7 @@ public class RankingBista extends JFrame {
 			Map<Integer, Erabiltzaile> lista = RankingKud.getNireRankingKud().rankingOrdenatuMaxLvl();
 			AtomicReference<String> ema= new AtomicReference<>("");
 			String unekoa = " ";
-			lista.forEach((key,value)-> ema.set(ema.get() + key + " " + value.getIzena() + " " + value.getPuntuazioa() + " " + value.getLvl() + "\r\n"));
+			lista.forEach((key,value)-> ema.set(ema.get() + value.getIzena() + " " + value.getPuntuazioa() + " " + value.getLvl() + "\r\n"));
 			textPane.setText(ema.get());
 		});
 		goikoPanela.add(mailaMax);
@@ -116,7 +119,7 @@ public class RankingBista extends JFrame {
 		String ema= "";
 		String unekoa = " ";
 		while (!hamar && i<lista.size()){
-			unekoa= i + " " + lista.get(i).getIzena() + " " + lista.get(i).getPuntuazioa() + " " + lista.get(i).getLvl()+"\r\n";
+			unekoa= (i+1) + " " + lista.get(i).getIzena() + " " + lista.get(i).getPuntuazioa() + " " + lista.get(i).getLvl()+"\r\n";
 			ema= ema+unekoa;
 			i++;
 			if(i==10){
