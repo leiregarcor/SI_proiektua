@@ -2,8 +2,10 @@ package model;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.Iterator;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class RankingKud {
     private static RankingKud nRankingKud = new RankingKud();
@@ -35,5 +37,9 @@ public class RankingKud {
         }
     }
 
+    public ArrayList<Erabiltzaile> rankingOrdenatu(){
+        return (ArrayList<Erabiltzaile>) erabiltzaileKol.stream()
+                .sorted(Comparator.comparing(p->p.getPuntuazioa()));
+    }
 
 }

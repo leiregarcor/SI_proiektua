@@ -1,6 +1,7 @@
 package model;
 
 import java.io.*;
+import java.util.ArrayList;
 
 public class Writer {
     private static Writer writer = null;
@@ -28,19 +29,17 @@ public class Writer {
     }
 
 
-   public void fitxeroaEguneratu() throws IOException {
+   public void fitxeroaEguneratu(ArrayList<Erabiltzaile> lista) throws IOException {
         FileWriter fitxero= null;
         PrintWriter pw=null;
         fitxeroaSortu();
         try {
             fitxero= new FileWriter("resources\\Ranking.txt");
             pw=new PrintWriter(fitxero);
-            Collection<Web> c= this.webMapa.values();
-            ArrayList<Web> list= new ArrayList<>(c);
             // Hash mapeko balioak arrayList<Web>n gorde
 
-            for(int i=0; i<list.size();i++) {
-                pw.println(list.get(i).getUrlWeb()+" " +i);
+            for(int i=0; i<lista.size();i++) {
+                pw.println(i + " " + lista.get(i).getIzena()+ " " + lista.get(i).getPuntuazioa() + " " + lista.get(i).getLvl());
             }
         } catch(Exception e) {
             e.printStackTrace();

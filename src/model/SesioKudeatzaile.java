@@ -59,6 +59,7 @@ public class SesioKudeatzaile {
     public void puntuazioaKalkulatu(){
         unekoErabiltzaile.setLvl(lvl);
         unekoErabiltzaile.puntuazioaKalkulatu((int) denbora);
+        RankingKud.getNireRankingKud().addErabiltzaile(unekoErabiltzaile);
     }
 
     public static void main(String[] args) {
