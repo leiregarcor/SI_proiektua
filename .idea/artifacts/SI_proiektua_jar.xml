@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" build-on-make="true" name="SI_proiektua:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/SI_proiektua_jar</output-path>
+    <root id="archive" name="SI_proiektua.jar">
+      <element id="module-output" name="SI_proiektua" />
+    </root>
+  </artifact>
+</component>

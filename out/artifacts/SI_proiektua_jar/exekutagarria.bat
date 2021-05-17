@@ -1,0 +1,1 @@
+java -cp SI_proiektua.jar SesioKudeatzaile
