@@ -10,6 +10,8 @@ import javax.swing.JTextPane;
 import javax.swing.JButton;
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class RankingBista extends JFrame {
 
@@ -50,12 +52,22 @@ public class RankingBista extends JFrame {
 		goikoPanela.setLayout(new GridLayout(0, 3, 0, 0));
 		
 		JButton lehen10 = new JButton("Lehen 10");
+		lehen10.addActionListener(e -> {
+			
+		});
 		goikoPanela.add(lehen10);
 		
 		JButton mailaka = new JButton("Mailaka");
+		mailaka.addActionListener(e -> {
+			
+		});
+
 		goikoPanela.add(mailaka);
 		
 		JButton mailaMax = new JButton("Maila max");
+		mailaMax.addActionListener(e -> {
+			
+		});
 		goikoPanela.add(mailaMax);
 		
 		JPanel behekoPanela = new JPanel();
@@ -69,6 +81,9 @@ public class RankingBista extends JFrame {
 		behekoPanela.add(panel_1);
 		
 		JButton exitBotoia = new JButton("Exit");
+		exitBotoia.addActionListener(e -> {
+			
+		});
 		behekoPanela.add(exitBotoia);
 	}
 }
