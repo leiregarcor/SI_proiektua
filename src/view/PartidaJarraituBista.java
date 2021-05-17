@@ -1,5 +1,7 @@
 package view;
 
+import model.SesioKudeatzaile;
+
 import java.awt.BorderLayout;
 
 import javax.swing.JButton;
@@ -15,6 +17,8 @@ public class PartidaJarraituBista extends JDialog {
 
 	private final JPanel contentPanel = new JPanel();
 	private final ButtonGroup buttonGroup = new ButtonGroup();
+	private JRadioButton baiBotoia;
+	private JRadioButton ezBotoia;
 
 	/**
 	 * Launch the application.
@@ -51,18 +55,26 @@ public class PartidaJarraituBista extends JDialog {
 			contentPanel.add(okButton);
 			okButton.setActionCommand("OK");
 			okButton.addActionListener(e -> {
-				
+				if(baiBotoia.isSelected()){
+					SesioKudeatzaile.getInstance().partidaBukatu();
+					setVisible(false);
+				}
+				else {
+					if(ezBotoia.isSelected()){
+						System.exit(0);
+					}
+				}
 			});
 			getRootPane().setDefaultButton(okButton);
 		}
 		
-		JRadioButton baiBotoia = new JRadioButton("Bai");
+		baiBotoia = new JRadioButton("Bai");
 		buttonGroup.add(baiBotoia);
 		baiBotoia.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		baiBotoia.setBounds(105, 106, 75, 31);
 		contentPanel.add(baiBotoia);
 		
-		JRadioButton ezBotoia = new JRadioButton("Ez");
+		ezBotoia = new JRadioButton("Ez");
 		buttonGroup.add(ezBotoia);
 		ezBotoia.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		ezBotoia.setBounds(266, 106, 66, 31);

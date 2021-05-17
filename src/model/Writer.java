@@ -29,11 +29,15 @@ public class Writer {
     }
 
 
-   public void fitxeroaEguneratu(ArrayList<Erabiltzaile> lista) throws IOException {
+   public void fitxeroaEguneratu(ArrayList<Erabiltzaile> lista){
         FileWriter fitxero= null;
         PrintWriter pw=null;
-        fitxeroaSortu();
-        try {
+       try {
+           fitxeroaSortu();
+       } catch (IOException e) {
+           e.printStackTrace();
+       }
+       try {
             fitxero= new FileWriter("resources\\Ranking.txt");
             pw=new PrintWriter(fitxero);
             // Hash mapeko balioak arrayList<Web>n gorde

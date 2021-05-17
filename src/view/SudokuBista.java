@@ -15,6 +15,7 @@ import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.io.IOException;
 import java.util.Observable;
 import java.util.Observer;
 import javax.swing.JTextPane;
@@ -46,7 +47,7 @@ public class SudokuBista extends JFrame implements Observer {
 		});
 	}
 	public static void setHasieraOrdua(){
-		hasieraOrdua= System.nanoTime();
+		hasieraOrdua= System.currentTimeMillis();
 	}
 
 	/**
@@ -183,7 +184,7 @@ public class SudokuBista extends JFrame implements Observer {
 				if (t.partidaBukatu()) {
 					if (t.zuzenaDa()) {
 						//Erabiltzaileak sudokua ondo egin badu, bere denbora gordeko dugu, horretarako lehenengo zenbat denbora behar izan duen kalkulatuko dugu
-						long denboraTotala= System.nanoTime()-hasieraOrdua;
+						long denboraTotala= (System.currentTimeMillis()-hasieraOrdua)/1000;
 						SesioKudeatzaile.getInstance().setDenbora(denboraTotala);
 						SesioKudeatzaile.getInstance().puntuazioaKalkulatu();
 						//mezua
@@ -192,12 +193,10 @@ public class SudokuBista extends JFrame implements Observer {
 						if(SesioKudeatzaile.getInstance().getLvl()==3){
 							JOptionPane.showMessageDialog(null, "Sudokuak bukatu dituzu! :) ", "Bukaera panela",
 									JOptionPane.PLAIN_MESSAGE);
-							System.exit(0);
 						}
-						else{
-							setVisible(false);
-							SesioKudeatzaile.getInstance().partidaBukatu();
-						}
+						setVisible(false);
+						RankingBista.main(null);
+							//SesioKudeatzaile.getInstance().partidaBukatu();
 					} else {
 						JOptionPane.showMessageDialog(null, "Sudokua gaizki dago :( ", "Adi!",
 								JOptionPane.ERROR_MESSAGE);
@@ -231,17 +230,19 @@ public class SudokuBista extends JFrame implements Observer {
 			Tablero t = Sudoku.getNireSudoku().getTablero();
 			if (t.partidaBukatu()) {
 				if (t.zuzenaDa()) {
+					long denboraTotala= (System.currentTimeMillis()-hasieraOrdua)/1000;
+					SesioKudeatzaile.getInstance().setDenbora(denboraTotala);
+					SesioKudeatzaile.getInstance().puntuazioaKalkulatu();
 					JOptionPane.showMessageDialog(null, "Sudokua asmatu duzu! :) ", "Zorionak!",
 							JOptionPane.PLAIN_MESSAGE);
+					RankingBista.main(null);
 					if(SesioKudeatzaile.getInstance().getLvl()==3){
 						JOptionPane.showMessageDialog(null, "Sudokuak bukatu dituzu! :) ", "Bukaera panela",
 								JOptionPane.PLAIN_MESSAGE);
-						System.exit(0);
 					}
-					else{
-						setVisible(false);
-						SesioKudeatzaile.getInstance().partidaBukatu();
-					}
+					setVisible(false);
+					//RankingBista.main(null);
+						//SesioKudeatzaile.getInstance().partidaBukatu();
 				} else {
 					JOptionPane.showMessageDialog(null, "Sudokua gaizki dago :( ", "Adi!",
 							JOptionPane.ERROR_MESSAGE);
@@ -377,6 +378,12 @@ public class SudokuBista extends JFrame implements Observer {
 		KasillaBista k = new KasillaBista(koad, err + gehierr, zut + gehizut);
 		matrizea[err + gehierr][zut + gehizut] = k;
 		return k;
+	}
+
+	public void irten(){
+		JOptionPane.showMessageDialog(null, "Sudokuak bukatu dituzu! :) ", "Bukaera panela",
+				JOptionPane.PLAIN_MESSAGE);
+		System.exit(0);
 	}
 
 	@Override

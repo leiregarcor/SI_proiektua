@@ -3,6 +3,8 @@ package model;
 import view.HasieraPanela;
 import view.SudokuBista;
 
+import java.io.IOException;
+
 public class SesioKudeatzaile {
     private static SesioKudeatzaile sk = null;
     private int lvl;
@@ -40,6 +42,7 @@ public class SesioKudeatzaile {
             }
             else{
                 System.out.println("Ez dago sudokurik");
+
             }
         }
 
@@ -48,6 +51,9 @@ public class SesioKudeatzaile {
     public void partidaBukatu(){
         lvl++;
         if(lvl<=3){
+            Erabiltzaile berria= new Erabiltzaile();
+            berria.setIzena(unekoErabiltzaile.getIzena());
+            unekoErabiltzaile=berria;
             SudokuBista.main(null);
         }
     }
@@ -56,10 +62,11 @@ public class SesioKudeatzaile {
         return lvl;
     }
 
-    public void puntuazioaKalkulatu(){
+    public void puntuazioaKalkulatu() {
         unekoErabiltzaile.setLvl(lvl);
         unekoErabiltzaile.puntuazioaKalkulatu((int) denbora);
         RankingKud.getNireRankingKud().addErabiltzaile(unekoErabiltzaile);
+        RankingKud.getNireRankingKud().fitxategiaEguneratu();
     }
 
     public static void main(String[] args) {

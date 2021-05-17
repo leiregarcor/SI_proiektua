@@ -92,7 +92,7 @@ public class Sudoku extends Observable {
             lag=2;
         }
         if (sol[0]!=-1){
-
+            SesioKudeatzaile.getInstance().getUnekoErabiltzaile().laguntzaHanditu();
             Boolean[] haut= new Boolean[10];
             Arrays.fill(haut, false);
             kasilaEguneratu(sol[1],sol[2],sol[0],haut,true);
