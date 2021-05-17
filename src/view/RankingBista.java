@@ -1,5 +1,8 @@
 package view;
 
+import model.Erabiltzaile;
+import model.RankingKud;
+
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
 
@@ -12,6 +15,7 @@ import java.awt.FlowLayout;
 import java.awt.GridLayout;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.util.ArrayList;
 
 public class RankingBista extends JFrame {
 
@@ -53,20 +57,47 @@ public class RankingBista extends JFrame {
 		
 		JButton lehen10 = new JButton("Lehen 10");
 		lehen10.addActionListener(e -> {
-			
+			ArrayList<Erabiltzaile> lista = RankingKud.getNireRankingKud().rankingOrdenatu10();
+			boolean hamar=false;
+			int i=0;
+			String ema= "";
+			String unekoa = " ";
+			while (!hamar && i<lista.size()){
+				unekoa= i + " " + lista.get(i).getIzena() + " " + lista.get(i).getPuntuazioa() + " " + lista.get(i).getLvl()+"\r\n";
+				ema= ema+unekoa;
+				i++;
+				if(i==10){
+					hamar=true;
+				}
+			}
+			textPane.setText(ema);
 		});
 		goikoPanela.add(lehen10);
 		
 		JButton mailaka = new JButton("Mailaka");
 		mailaka.addActionListener(e -> {
-			
+			ArrayList<Erabiltzaile> lista = RankingKud.getNireRankingKud().rankingOrdenatuLvl();
+			String ema= "";
+			String unekoa = " ";
+			for (int i=0; i<lista.size();i++){
+				unekoa= i + " " + lista.get(i).getIzena() + " " + lista.get(i).getPuntuazioa() + " " + lista.get(i).getLvl()+"\r\n";
+				ema= ema+unekoa;
+			}
+			textPane.setText(ema);
 		});
 
 		goikoPanela.add(mailaka);
 		
 		JButton mailaMax = new JButton("Maila max");
 		mailaMax.addActionListener(e -> {
-			
+			ArrayList<Erabiltzaile> lista = RankingKud.getNireRankingKud().rankingOrdenatuMaxLvl();
+			String ema= "";
+			String unekoa = " ";
+			for (int i=0; i<lista.size();i++){
+				unekoa= i + " " + lista.get(i).getIzena() + " " + lista.get(i).getPuntuazioa() + " " + lista.get(i).getLvl()+"\r\n";
+				ema= ema+unekoa;
+			}
+			textPane.setText(ema);
 		});
 		goikoPanela.add(mailaMax);
 		
@@ -82,7 +113,8 @@ public class RankingBista extends JFrame {
 		
 		JButton exitBotoia = new JButton("Exit");
 		exitBotoia.addActionListener(e -> {
-			
+			setVisible(false);
+			PartidaJarraituBista.main(null);
 		});
 		behekoPanela.add(exitBotoia);
 	}

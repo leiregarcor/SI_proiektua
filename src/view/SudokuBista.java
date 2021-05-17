@@ -409,10 +409,10 @@ public class SudokuBista extends JFrame implements Observer {
 			else {
 				String laguntza="";
 				if(mezu[0]==1){
-					laguntza="Sole Candidate";
+					laguntza="Sole";
 				}
 				if (mezu[0]==2){
-					laguntza="Unique Candidate";
+					laguntza="Unique";
 				}
 				int balioa=mezu[1];
 				int err=mezu[2];

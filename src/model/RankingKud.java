@@ -1,10 +1,8 @@
 package model;
 
 import java.io.File;
-import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.Iterator;
-import java.util.List;
+import java.time.chrono.Era;
+import java.util.*;
 import java.util.stream.Collectors;
 
 public class RankingKud {
@@ -37,9 +35,19 @@ public class RankingKud {
         }
     }
 
-    public ArrayList<Erabiltzaile> rankingOrdenatu(){
+    public ArrayList<Erabiltzaile> rankingOrdenatu10(){
         return (ArrayList<Erabiltzaile>) erabiltzaileKol.stream()
                 .sorted(Comparator.comparing(p->p.getPuntuazioa()));
     }
 
+    public ArrayList<Erabiltzaile> rankingOrdenatuLvl(){
+        return (ArrayList<Erabiltzaile>) erabiltzaileKol.stream()
+                .sorted(Comparator.comparing(Erabiltzaile::getLvl).thenComparing((Erabiltzaile::getPuntuazioa)));
+    }
+
+    public ArrayList<Erabiltzaile> rankingOrdenatuMaxLvl(){
+        return (ArrayList<Erabiltzaile>) erabiltzaileKol.stream()
+                .collect(Collectors.groupingBy(Erabiltzaile::getLvl,
+                                                    Collectors.collectingAndThen(Collectors.maxBy(Comparator.comparingDouble(Erabiltzaile::getPuntuazioa)), Optional::get)));
+    }
 }

@@ -1,7 +1,6 @@
 package view;
 
 import java.awt.BorderLayout;
-import java.awt.FlowLayout;
 
 import javax.swing.JButton;
 import javax.swing.JDialog;
@@ -12,7 +11,7 @@ import java.awt.Font;
 import javax.swing.JRadioButton;
 import javax.swing.ButtonGroup;
 
-public class partidaJarraituBista extends JDialog {
+public class PartidaJarraituBista extends JDialog {
 
 	private final JPanel contentPanel = new JPanel();
 	private final ButtonGroup buttonGroup = new ButtonGroup();
@@ -22,7 +21,7 @@ public class partidaJarraituBista extends JDialog {
 	 */
 	public static void main(String[] args) {
 		try {
-			partidaJarraituBista dialog = new partidaJarraituBista();
+			PartidaJarraituBista dialog = new PartidaJarraituBista();
 			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 			dialog.setVisible(true);
 		} catch (Exception e) {
@@ -33,7 +32,7 @@ public class partidaJarraituBista extends JDialog {
 	/**
 	 * Create the dialog.
 	 */
-	public partidaJarraituBista() {
+	public PartidaJarraituBista() {
 		setBounds(100, 100, 450, 300);
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
